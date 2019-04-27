@@ -1,0 +1,6 @@
+All medicines:
+<div *ngIf="medicines">
+  <div *ngFor="let med of medicines">
+    <div>medicineName: {{med.medicineName}} quantity: {{med.quantity}} expirationDate: {{med.expirationDate}}</div>
+  </div>
+</div>

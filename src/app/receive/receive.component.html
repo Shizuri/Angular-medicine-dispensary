@@ -1,0 +1,28 @@
+<div>Input new medicine</div>
+
+<label>
+  Medicine Name:
+  <input type="text" [formControl]="medicineName">
+</label>
+<label>
+  Quantity:
+  <input type="number" [formControl]="quantity">
+</label>
+<label>
+  Expiration Date:
+  <input type="date" [formControl]="expirationDate">
+</label>
+
+<p>
+  <button (click)="addMedicine()">Add Medicine</button>
+</p>
+
+<p>
+  Medicine Name: {{ medicineName.value }}
+</p>
+<p>
+  Quantity: {{ quantity.value }}
+</p>
+<p>
+  Expiration Date: {{ expirationDate.value }}
+</p>
