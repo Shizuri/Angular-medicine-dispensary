@@ -3,15 +3,15 @@
 <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
   <label>
     Medicine Name:
-    <input type="text" formControlName="medicineName">
+    <input type="text" formControlName="medicineName" required>
   </label>
   <label>
     Quantity:
-    <input type="number" formControlName="quantity">
+    <input type="number" formControlName="quantity" required>
   </label>
   <label>
     Expiration Date:
-    <input type="date" formControlName="expirationDate">
+    <input type="date" formControlName="expirationDate" min={{today}} required>
   </label>
   <button type="submit" [disabled]="!medicineForm.valid">Submit</button>
 </form>
@@ -23,4 +23,8 @@
 
 <p>
   Form Status: {{ medicineForm.status }}
+</p>
+
+<p>
+  тест на македонски
 </p>
