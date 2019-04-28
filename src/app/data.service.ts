@@ -13,16 +13,23 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMedicine(): Observable<any[]>{
+  getAllMedicine(): Observable<any[]> {
     return this.http.get<any[]>(this.receiveUrl);
   }
 
-  getAllUses(){
+  getAllUses() {
     return this.http.get(this.useUrl);
   }
 
-  addMedicine(medicine: newMedicine){
-    return this.http.post(this.receiveUrl, medicine);
+  addMedicine(medicine) {
+    return this.http.post(this.receiveUrl, medicine)
+      .subscribe(data => {
+        console.log("POST Request is successful", data);
+      },
+        error => {
+          console.log("Error", error);
+        }
+      );
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { newMedicine } from '../newMedicine';
 
 @Component({
@@ -10,9 +10,12 @@ import { newMedicine } from '../newMedicine';
 })
 export class ReceiveComponent implements OnInit {
 
-  quantity = new FormControl('');
-  medicineName = new FormControl('');
-  expirationDate = new FormControl('');
+  medicineForm = new FormGroup({
+    quantity: new FormControl(''),
+    medicineName: new FormControl(''),
+    expirationDate: new FormControl('')
+  });
+
 
   constructor(private data: DataService) { }
 
@@ -20,14 +23,13 @@ export class ReceiveComponent implements OnInit {
 
   }
 
-  addMedicine(){
-    let medicine = new newMedicine;
-    medicine.quantity = this.quantity.value;
-    medicine.medicineName = this.medicineName.value;
-    medicine.expirationDate = this.expirationDate.value;
+  onSubmit() {
+    console.warn(this.medicineForm.value);
+    this.addMedicine();
+  }
 
-    this.data.addMedicine(medicine);
-    console.log(`clicked ${medicine}`)
+  addMedicine() {
+    this.data.addMedicine(this.medicineForm.value);
   }
 
 }

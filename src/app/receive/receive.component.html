@@ -1,28 +1,26 @@
 <div>Input new medicine</div>
 
-<label>
-  Medicine Name:
-  <input type="text" [formControl]="medicineName">
-</label>
-<label>
-  Quantity:
-  <input type="number" [formControl]="quantity">
-</label>
-<label>
-  Expiration Date:
-  <input type="date" [formControl]="expirationDate">
-</label>
+<form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
+  <label>
+    Medicine Name:
+    <input type="text" formControlName="medicineName">
+  </label>
+  <label>
+    Quantity:
+    <input type="number" formControlName="quantity">
+  </label>
+  <label>
+    Expiration Date:
+    <input type="date" formControlName="expirationDate">
+  </label>
+  <button type="submit" [disabled]="!medicineForm.valid">Submit</button>
+</form>
 
 <p>
-  <button (click)="addMedicine()">Add Medicine</button>
+  Form Value: {{ medicineForm.value | json }}
 </p>
 
+
 <p>
-  Medicine Name: {{ medicineName.value }}
-</p>
-<p>
-  Quantity: {{ quantity.value }}
-</p>
-<p>
-  Expiration Date: {{ expirationDate.value }}
+  Form Status: {{ medicineForm.status }}
 </p>
