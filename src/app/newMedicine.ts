@@ -3,3 +3,4 @@ export class newMedicine {
   medicineName: string;
   expirationDate: string;
 }
+//don't need nor use this class

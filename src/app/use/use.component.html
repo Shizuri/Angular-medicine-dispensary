@@ -1,3 +1,25 @@
+<div>Use medicine</div>
+
+<form [formGroup]="useForm" (ngSubmit)="onSubmit()">
+  <label for="medicineName">Medicine Name</label>
+  <input type="text" formControlName="medicineName" required>
+
+  <label for="expirationDate">Expiration Date</label>
+  <input type="date" formControlName="expirationDate" min={{today}} required>
+
+  <label for="patientName">Patient Name</label>
+  <input type="text" formControlName="patientName" required>
+
+  <label for="dateOfAdministration">Date of Administration</label>
+  <input type="date" formControlName="dateOfAdministration">
+
+  <button type="submit" [disabled]="!useForm.valid">Submit</button>
+</form>
+
 <p>
-  use works!
+  Form Value: {{ useForm.value | json }}
+</p>
+
+<p>
+  Form Status: {{ useForm.status }}
 </p>
