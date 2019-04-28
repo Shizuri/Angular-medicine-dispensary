@@ -3,11 +3,11 @@
 <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
   <label>
     Medicine Name:
-    <input type="text" formControlName="medicineName" required>
+    <input type="text" formControlName="medicineName" placeholder="medicine name" required>
   </label>
   <label>
     Quantity:
-    <input type="number" formControlName="quantity" required>
+    <input type="number" formControlName="quantity" min="0" placeholder="quantity as a number" required>
   </label>
   <label>
     Expiration Date:
@@ -19,7 +19,6 @@
 <p>
   Form Value: {{ medicineForm.value | json }}
 </p>
-
 
 <p>
   Form Status: {{ medicineForm.status }}

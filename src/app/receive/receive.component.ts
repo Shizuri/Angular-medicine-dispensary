@@ -12,14 +12,12 @@ import { DatePipe } from '@angular/common';
 export class ReceiveComponent implements OnInit {
 
   today;
-  tnow = "2019-04-28";
 
   medicineForm = new FormGroup({
     quantity: new FormControl('', Validators.required),
     medicineName: new FormControl('', Validators.required),
     expirationDate: new FormControl('', Validators.required)
   });
-
 
   constructor(private data: DataService, private datePipe: DatePipe) { }
 
