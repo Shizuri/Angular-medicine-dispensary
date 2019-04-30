@@ -1,4 +1,4 @@
-<div>Use medicine</div>
+<div><h3>Use medicine</h3></div>
 
 <form [formGroup]="useForm" (ngSubmit)="onSubmit()">
   <label for="medicineName">Medicine Name</label>
@@ -22,4 +22,8 @@
 
 <p>
   Form Status: {{ useForm.status }}
+</p>
+
+<p *ngIf="errorReport">
+  Error Message: {{ errorReport }}
 </p>
