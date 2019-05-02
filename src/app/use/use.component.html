@@ -2,13 +2,13 @@
 
 <form [formGroup]="useForm" (ngSubmit)="onSubmit()">
   <label for="medicineName">Medicine Name</label>
-  <input type="text" formControlName="medicineName" required>
+  <input type="text" formControlName="medicineName" placeholder="medicine name" required>
 
   <label for="expirationDate">Expiration Date</label>
   <input type="date" formControlName="expirationDate" min={{today}} required>
 
   <label for="patientName">Patient Name</label>
-  <input type="text" formControlName="patientName" required>
+  <input type="text" formControlName="patientName" placeholder="patient name" required>
 
   <label for="dateOfAdministration">Date of Administration</label>
   <input type="date" formControlName="dateOfAdministration">
