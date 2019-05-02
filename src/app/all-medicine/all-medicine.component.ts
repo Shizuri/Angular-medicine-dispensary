@@ -18,7 +18,6 @@ export class AllMedicineComponent implements OnInit {
 
   ngOnInit() {
     this.getAllMedicine();
-    this.test();
   }
 
   getAllMedicine() {
@@ -34,16 +33,4 @@ export class AllMedicineComponent implements OnInit {
   // }
   // under contstruction
 
-  test() {
-    this.data.getAllMedicine()
-      .pipe(
-        tap(res =>{
-          console.log(res);
-        }),
-        mergeMap(res => res)
-      )
-      .subscribe(med => {
-        console.log(med);
-      });
-  }
 }
