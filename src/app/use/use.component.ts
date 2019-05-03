@@ -3,36 +3,36 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-use',
-  templateUrl: './use.component.html',
-  styleUrls: ['./use.component.css']
+    selector: 'app-use',
+    templateUrl: './use.component.html',
+    styleUrls: ['./use.component.css']
 })
 export class UseComponent implements OnInit {
 
-  // useMed$;
+    // useMed$;
 
-  useForm = new FormGroup({
-    medicineName: new FormControl(''),
-    expirationDate: new FormControl(''),
-    patientName: new FormControl(''),
-    dateOfAdministration: new FormControl('')
+    useForm = new FormGroup({
+        medicineName: new FormControl(''),
+        expirationDate: new FormControl(''),
+        patientName: new FormControl(''),
+        dateOfAdministration: new FormControl('')
 
-  });
+    });
 
-  constructor(private data: DataService) { }
+    constructor(private data: DataService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  onSubmit() {
-    // console.log(this.useForm.value);
-    this.useMedicine();
-    // console.log('this.blah: ', this.useMed$);
-    // console.log('errorMessage:', this.useMed$.error);
-  }
+    onSubmit() {
+        // console.log(this.useForm.value);
+        this.useMedicine();
+        // console.log('this.blah: ', this.useMed$);
+        // console.log('errorMessage:', this.useMed$.error);
+    }
 
-  useMedicine(){
-    this.data.useMedicine(this.useForm.value);
-  }
+    useMedicine() {
+        this.data.useMedicine(this.useForm.value);
+    }
 
 }

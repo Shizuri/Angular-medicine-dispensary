@@ -11,7 +11,7 @@ export class DataService {
 
   receiveUrl = 'http://localhost:8080/receive';
   useUrl = 'http://localhost:8080/use';
-  errorMessage;
+  // errorMessage;
 
   constructor(private http: HttpClient) { }
 
@@ -41,8 +41,8 @@ export class DataService {
       },
         error => {
           console.log('Error with useMedicine', error);
-          this.errorMessage = error.error;
-          console.log('Error Message:', this.errorMessage);
+          // this.errorMessage = error.error;
+          // console.log('Error Message:', this.errorMessage);
         }
       );
   }
