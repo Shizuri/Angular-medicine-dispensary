@@ -12,13 +12,14 @@ export class AllMedicineComponent implements OnInit {
 
     medicines;
     searchMed = new FormControl('');
-    newMeds;
+    newMeds: any[] = [];
+    loaded = false;
 
     constructor(private data: DataService) { }
 
     ngOnInit() {
         this.getAllMedicine();
-        this.test();
+        this.listByMedicine();
     }
 
     getAllMedicine() {
@@ -26,19 +27,24 @@ export class AllMedicineComponent implements OnInit {
             .subscribe(med => {
                 this.medicines = med;
             });
+        this.loaded = true;
     }
 
-    listByMedicine(med) {
-
+    listByMedicine() {
+        this.searchMed.valueChanges.subscribe(med => {
+            this.find(med);
+        });
     }
 
-    // searchMeds() {
-    //   this.searchMed.valueChanges
-    //     .pipe()
-    // }
-    // under contstruction
+    find(med:String) {
+        this.newMeds = [];
 
-    test() {
-        let bob = this.searchMed.valueChanges.subscribe(med => this.newMeds = med);
+        if(med.trim()){
+            for(let i = 0; i < this.medicines.length; i++){
+                if(this.medicines[i].medicineName.toLowerCase().includes(med.toLowerCase())){
+                    this.newMeds.push(this.medicines[i]);
+                }
+            }
+        }
     }
 }

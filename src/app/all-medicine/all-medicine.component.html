@@ -1,6 +1,13 @@
-<h3>Search medicines:</h3>
-<input type="text" [formControl]="searchMed">
-{{newMeds}}
+<div *ngIf="loaded">
+  <h3>Search medicines:</h3>
+  <input type="text" [formControl]="searchMed">
+</div>
+
+<div *ngIf="newMeds">
+  <div *ngFor="let med of newMeds">
+    <div>medicineName: {{med.medicineName}} quantity: {{med.quantity}} expirationDate: {{med.expirationDate}}</div>
+  </div>
+</div>
 
 <h3>All medicines:</h3>
 <div *ngIf="medicines">
