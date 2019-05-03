@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormControl } from '@angular/forms';
-import { tap, mergeMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-all-medicine',
@@ -32,19 +31,19 @@ export class AllMedicineComponent implements OnInit {
 
     listByMedicine() {
         this.searchMed.valueChanges.subscribe(med => {
-            this.find(med);
+            this.findMed(med);
         });
     }
 
-    find(med:String) {
+    findMed(med: String) {
         this.newMeds = [];
 
-        if(med.trim()){
-            for(let i = 0; i < this.medicines.length; i++){
-                if(this.medicines[i].medicineName.toLowerCase().includes(med.toLowerCase())){
-                    this.newMeds.push(this.medicines[i]);
+        if (med.trim()) {
+            this.medicines.forEach(element => {
+                if (element.medicineName.toLowerCase().includes(med.toLowerCase())) {
+                    this.newMeds.push(element);
                 }
-            }
+            });
         }
     }
 }

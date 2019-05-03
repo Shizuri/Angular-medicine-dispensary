@@ -1,3 +1,15 @@
+<div *ngIf="loaded">
+  <h3>Search all uses by medicine:</h3>
+  <input type="text" [formControl]="searchMed">
+</div>
+
+<div *ngIf="newUses">
+  <div *ngFor="let use of newUses">
+    <div>medicineName: {{use.medicineName}} expirationDate: {{use.expirationDate}}
+      patientName: {{use.patientName}} dateOfAdministration{{use.dateOfAdministration}}</div>
+  </div>
+</div>
+
 <h3>All uses of medicine:</h3>
 <div *ngIf="uses">
   <div *ngFor="let use of uses">

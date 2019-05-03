@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
 })
 export class UseComponent implements OnInit {
 
-    // useMed$;
+    errorMessage; //make it a general message; Look at refactoring the whole system with sending observables and providing messages
 
     useForm = new FormGroup({
         medicineName: new FormControl(''),
@@ -25,14 +25,26 @@ export class UseComponent implements OnInit {
     }
 
     onSubmit() {
-        // console.log(this.useForm.value);
-        this.useMedicine();
-        // console.log('this.blah: ', this.useMed$);
-        // console.log('errorMessage:', this.useMed$.error);
+        // this.useMedicine();
+        this.useMedicineUnpack();
     }
 
     useMedicine() {
-        this.data.useMedicine(this.useForm.value);
+        let bob = this.data.useMedicine(this.useForm.value);
+        console.log('bob: ', bob);
+    }
+
+    useMedicineUnpack(){//THIS WORKS!!!!
+        this.data.useMedicinePacked(this.useForm.value)
+        .subscribe(data => {
+            console.log('POST Request for useMedicine is successful', data);
+        },
+            error => {
+                console.log('Error with useMedicine', error);
+
+                this.errorMessage = error.error;
+                console.log('Error Message:', this.errorMessage);
+            });
     }
 
 }
