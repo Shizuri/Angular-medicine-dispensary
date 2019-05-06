@@ -10,6 +10,8 @@ import { DataService } from '../data.service';
 export class UseComponent implements OnInit {
 
     errorMessage; //make it a general message; Look at refactoring the whole system with sending observables and providing messages
+    medicines = [];
+    selectedValue: any;
 
     useForm = new FormGroup({
         medicineName: new FormControl(''),
@@ -19,9 +21,12 @@ export class UseComponent implements OnInit {
 
     });
 
+    findMedicine = new FormControl('');
+
     constructor(private data: DataService) { }
 
     ngOnInit() {
+        this.getAllMedicines();
     }
 
     onSubmit() {
@@ -29,22 +34,40 @@ export class UseComponent implements OnInit {
         this.useMedicineUnpack();
     }
 
-    useMedicine() {
-        let bob = this.data.useMedicine(this.useForm.value);
-        console.log('bob: ', bob);
+    // useMedicine() {
+    //     let bob = this.data.useMedicine(this.useForm.value);
+    //     console.log('bob: ', bob);
+    // }
+
+    useMedicineUnpack() {//THIS WORKS!!!!
+        this.data.useMedicinePacked(this.useForm.value)
+            .subscribe(data => {
+                console.log('POST Request for useMedicine is successful', data);
+            },
+                error => {
+                    console.log('Error with useMedicine', error);
+
+                    this.errorMessage = error.error;
+                    console.log('Error Message:', this.errorMessage);
+                });
     }
 
-    useMedicineUnpack(){//THIS WORKS!!!!
-        this.data.useMedicinePacked(this.useForm.value)
-        .subscribe(data => {
-            console.log('POST Request for useMedicine is successful', data);
-        },
-            error => {
-                console.log('Error with useMedicine', error);
-
-                this.errorMessage = error.error;
-                console.log('Error Message:', this.errorMessage);
+    getAllMedicines() {
+        this.data.getAllMedicine()
+            .subscribe(med => {
+                this.medicines = med;
+                console.log(this.medicines);
             });
+        console.log(`medicinies: ${this.medicines}`);
+    }
+
+    doSomething(){
+        this.useForm.patchValue({
+            medicineName: this.selectedValue.medicineName,
+            expirationDate: this.selectedValue.expirationDate
+        });
+
+        console.log(this.selectedValue);
     }
 
 }

@@ -1,4 +1,6 @@
-<div><h3>Use medicine</h3></div>
+<div>
+  <h3>Use medicine</h3>
+</div>
 
 <form [formGroup]="useForm" (ngSubmit)="onSubmit()">
   <label for="medicineName">Medicine Name</label>
@@ -15,6 +17,26 @@
 
   <button type="submit" [disabled]="!useForm.valid">Submit</button>
 </form>
+
+<!-- <div>
+  <h3>Pick medicine</h3>
+</div>
+
+<select formControl="findMedicine">
+  <option *ngFor="let name of medicines">
+    {{name}}
+  </option>
+</select> -->
+
+<div>
+  <h3>TRY 2</h3>
+</div>
+
+<select [(ngModel)]="selectedValue" (change)="doSomething()">
+  <option disabled selected>Please select...</option>
+  <option *ngFor="let item of medicines" [ngValue]="item">{{item.medicineName}} with expiration date:
+    {{item.expirationDate}}</option>
+</select>
 
 <p>
   Form Value: {{ useForm.value | json }}
