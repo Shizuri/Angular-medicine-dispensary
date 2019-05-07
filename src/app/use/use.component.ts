@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../data.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-use',
@@ -9,6 +10,7 @@ import { DataService } from '../data.service';
 })
 export class UseComponent implements OnInit {
 
+    today;
     errorMessage;
     confirmationMessage;
     medicines = [];
@@ -22,10 +24,11 @@ export class UseComponent implements OnInit {
 
     });
 
-    constructor(private data: DataService) { }
+    constructor(private data: DataService, private datePipe: DatePipe) { }
 
     ngOnInit() {
         this.getAllMedicines();
+        this.getToday();
     }
 
     onSubmit() {
@@ -66,4 +69,7 @@ export class UseComponent implements OnInit {
         console.log(this.selectedValue);
     }
 
+    getToday() {
+        this.today = this.datePipe.transform(new Date(), "yyyy-MM-dd");
+    }
 }
