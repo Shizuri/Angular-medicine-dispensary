@@ -9,7 +9,8 @@ import { DataService } from '../data.service';
 })
 export class UseComponent implements OnInit {
 
-    errorMessage; //make it a general message; Look at refactoring the whole system with sending observables and providing messages
+    errorMessage;
+    confirmationMessage;
     medicines = [];
     selectedValue: any;
 
@@ -21,8 +22,6 @@ export class UseComponent implements OnInit {
 
     });
 
-    findMedicine = new FormControl('');
-
     constructor(private data: DataService) { }
 
     ngOnInit() {
@@ -30,24 +29,21 @@ export class UseComponent implements OnInit {
     }
 
     onSubmit() {
-        // this.useMedicine();
         this.useMedicineUnpack();
     }
 
-    // useMedicine() {
-    //     let bob = this.data.useMedicine(this.useForm.value);
-    //     console.log('bob: ', bob);
-    // }
-
-    useMedicineUnpack() {//THIS WORKS!!!!
+    useMedicineUnpack() {
         this.data.useMedicinePacked(this.useForm.value)
             .subscribe(data => {
                 console.log('POST Request for useMedicine is successful', data);
+                this.confirmationMessage = true;
+                this.errorMessage = false;
             },
                 error => {
                     console.log('Error with useMedicine', error);
-
-                    this.errorMessage = error.error;
+                    // this.errorMessage = error.error;
+                    this.confirmationMessage = false;
+                    this.errorMessage = true;
                     console.log('Error Message:', this.errorMessage);
                 });
     }
@@ -56,9 +52,9 @@ export class UseComponent implements OnInit {
         this.data.getAllMedicine()
             .subscribe(med => {
                 this.medicines = med;
-                console.log(this.medicines);
+                // console.log(this.medicines);
             });
-        console.log(`medicinies: ${this.medicines}`);
+        // console.log(`medicinies: ${this.medicines}`);
     }
 
     doSomething(){

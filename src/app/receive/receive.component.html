@@ -13,14 +13,10 @@
   <button type="submit" [disabled]="!medicineForm.valid">Submit</button>
 </form>
 
-<p>
-  Form Value: {{ medicineForm.value | json }}
+<p class="error" *ngIf="errorMessage">
+  Error adding this medicine.
 </p>
 
-<p>
-  Form Status: {{ medicineForm.status }}
-</p>
-
-<p>
-  тест на македонски
+<p class="confirmation" *ngIf="confirmationMessage">
+  Medicine used received.
 </p>

@@ -18,18 +18,8 @@
   <button type="submit" [disabled]="!useForm.valid">Submit</button>
 </form>
 
-<!-- <div>
-  <h3>Pick medicine</h3>
-</div>
-
-<select formControl="findMedicine">
-  <option *ngFor="let name of medicines">
-    {{name}}
-  </option>
-</select> -->
-
 <div>
-  <h3>TRY 2</h3>
+  <h3>Pick medicine</h3>
 </div>
 
 <select [(ngModel)]="selectedValue" (change)="doSomething()">
@@ -38,14 +28,10 @@
     {{item.expirationDate}}</option>
 </select>
 
-<p>
-  Form Value: {{ useForm.value | json }}
+<p class="error" *ngIf="errorMessage">
+  Error: No such medicine!
 </p>
 
-<p>
-  Form Status: {{ useForm.status }}
-</p>
-
-<p *ngIf="errorMessage">
-  Error Message: {{ errorMessage }}
+<p class="confirmation" *ngIf="confirmationMessage">
+  Medicine used successfully.
 </p>

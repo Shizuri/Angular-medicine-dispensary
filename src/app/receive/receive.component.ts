@@ -12,6 +12,8 @@ import { DatePipe } from '@angular/common';
 export class ReceiveComponent implements OnInit {
 
     today;
+    errorMessage;
+    confirmationMessage;
 
     medicineForm = new FormGroup({
         quantity: new FormControl('', Validators.required),
@@ -31,8 +33,23 @@ export class ReceiveComponent implements OnInit {
         this.addMedicine();
     }
 
+    // addMedicine() {
+    //     this.data.addMedicine(this.medicineForm.value);
+    // }
+
     addMedicine() {
-        this.data.addMedicine(this.medicineForm.value);
+        this.data.addMedicinePacked(this.medicineForm.value)
+            .subscribe(data => {
+                console.log('POST Request for addMedicine is successful', data);
+                this.confirmationMessage = true;
+                this.errorMessage = false;
+            },
+                error => {
+                    console.log('Error with addMedicine', error);
+                    this.confirmationMessage = false;
+                    this.errorMessage = true;
+                }
+            );
     }
 
     getToday() {
