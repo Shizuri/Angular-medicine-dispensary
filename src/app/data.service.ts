@@ -52,4 +52,8 @@ export class DataService {
         return this.http.post(this.useUrl, medicine);
     }
 
+    deleteMedicine(options){
+        return this.http.delete(this.receiveUrl, options);
+    }
+
 }

@@ -13,6 +13,8 @@ import { AllUsesComponent } from './all-uses/all-uses.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DeleteMedicineComponent } from './delete-medicine/delete-medicine.component';
+import { UndoUseComponent } from './undo-use/undo-use.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { FormsModule } from '@angular/forms';
     ReceiveComponent,
     UseComponent,
     AllMedicineComponent,
-    AllUsesComponent
+    AllUsesComponent,
+    DeleteMedicineComponent,
+    UndoUseComponent
   ],
   imports: [
     BrowserModule,

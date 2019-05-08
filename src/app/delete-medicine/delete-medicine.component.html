@@ -1,25 +1,22 @@
 <div>
-  <h3>Use medicine</h3>
+  <h3>Delete medicine</h3>
 </div>
 
-<form [formGroup]="useForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="deleteForm" (ngSubmit)="onSubmit()">
   <label for="medicineName">Medicine Name</label>
   <input type="text" formControlName="medicineName" placeholder="medicine name" required>
 
   <label for="expirationDate">Expiration Date</label>
   <input type="date" formControlName="expirationDate" min={{today}} required>
 
-  <label for="patientName">Patient Name</label>
-  <input type="text" formControlName="patientName" placeholder="patient name" required>
+  <label for="quantity">Quantity</label>
+  <input type="number" formControlName="quantity" placeholder="quantity">
 
-  <label for="dateOfAdministration">Date of Administration</label>
-  <input type="date" formControlName="dateOfAdministration" max={{today}} required>
-
-  <button type="submit" [disabled]="!useForm.valid">Submit</button>
+  <button type="submit" [disabled]="!deleteForm.valid">Submit</button>
 </form>
 
 <div>
-  <h3>Pick medicine</h3>
+  <h3>Pick medicine to delete</h3>
 </div>
 
 <select [(ngModel)]="selectedValue" (change)="inputMedicineValues()">
@@ -33,5 +30,5 @@
 </p>
 
 <p class="confirmation" *ngIf="confirmationMessage">
-  Medicine used successfully.
+  Medicine was successfully deleted.
 </p>

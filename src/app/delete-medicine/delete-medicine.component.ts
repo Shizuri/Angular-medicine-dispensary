@@ -1,54 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../data.service';
-import { DatePipe } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
-    selector: 'app-use',
-    templateUrl: './use.component.html',
-    styleUrls: ['./use.component.css']
+    selector: 'app-delete-medicine',
+    templateUrl: './delete-medicine.component.html',
+    styleUrls: ['./delete-medicine.component.css']
 })
-export class UseComponent implements OnInit {
+export class DeleteMedicineComponent implements OnInit {
 
-    today;
     errorMessage;
     confirmationMessage;
     medicines = [];
     selectedValue: any;
 
-    useForm = new FormGroup({
+    deleteForm = new FormGroup({
         medicineName: new FormControl(''),
         expirationDate: new FormControl(''),
-        patientName: new FormControl(''),
-        dateOfAdministration: new FormControl('')
-
+        quantity: new FormControl(''),
     });
 
-    constructor(private data: DataService, private datePipe: DatePipe) { }
+    constructor(private data: DataService) { }
 
     ngOnInit() {
         this.getAllMedicines();
-        this.getToday();
     }
 
     onSubmit() {
-        this.useMedicineUnpack();
+        this.deleteMedicine();
     }
 
-    useMedicineUnpack() {
-        this.data.useMedicinePacked(this.useForm.value)
+    deleteMedicine() {
+        const options = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            }),
+            body: this.deleteForm.value
+          }
+
+        // console.log(`delete json is: ${this.deleteForm.value}`);
+        // console.log(JSON.stringify(this.deleteForm.value));
+        this.data.deleteMedicine(options)
             .subscribe(
                 data => {
-                    console.log('POST Request for useMedicine is successful', data);
+                    console.log('DELETE Request for deleteMedicine is successful', data);
                     this.confirmationMessage = true;
                     this.errorMessage = false;
                 },
                 error => {
-                    console.log('Error with useMedicine', error);
-                    // this.errorMessage = error.error;
+                    console.log('Error with deleteMedicine', error);
                     this.confirmationMessage = false;
                     this.errorMessage = true;
-                    console.log('Error Message:', this.errorMessage);
                 });
     }
 
@@ -62,15 +65,12 @@ export class UseComponent implements OnInit {
     }
 
     inputMedicineValues() {
-        this.useForm.patchValue({
+        this.deleteForm.patchValue({
             medicineName: this.selectedValue.medicineName,
             expirationDate: this.selectedValue.expirationDate
         });
 
-        console.log(this.selectedValue);
+        // console.log(this.selectedValue);
     }
 
-    getToday() {
-        this.today = this.datePipe.transform(new Date(), "yyyy-MM-dd");
-    }
 }
