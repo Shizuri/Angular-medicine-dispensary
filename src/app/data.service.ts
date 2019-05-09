@@ -11,6 +11,8 @@ export class DataService {
 
     receiveUrl = 'http://localhost:8080/receive';
     useUrl = 'http://localhost:8080/use';
+    // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
+    // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
 
     constructor(private http: HttpClient) { }
 
