@@ -15,8 +15,6 @@ export class AllUsesComponent implements OnInit {
 
     numberOfUses;
     hasSearchValue = false;
-    loaded = false;
-    errorMessage;
 
     constructor(private data: DataService) { }
 
@@ -31,11 +29,9 @@ export class AllUsesComponent implements OnInit {
                 use => {
                     this.uses = use;
                     this.numberOfUses = this.uses.length;
-                    this.loaded = true;
                 },
                 error => {
-                    this.errorMessage = JSON.stringify(error);
-                    this.loaded = false;
+                    console.log(`Error: ${error}`);
                 });
     }
 

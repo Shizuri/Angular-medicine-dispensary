@@ -15,8 +15,6 @@ export class AllMedicineComponent implements OnInit {
 
     numberOfMedicines;
     hasSearchValue = false;
-    loaded = false;
-    errorMessage = "";
 
     constructor(private data: DataService) { }
 
@@ -31,11 +29,9 @@ export class AllMedicineComponent implements OnInit {
                 med => {
                     this.medicines = med;
                     this.numberOfMedicines = this.medicines.length;
-                    this.loaded = true;
                 },
                 error => {
-                    this.errorMessage = JSON.stringify(error);
-                    this.loaded = false;
+                    console.log(`Error: ${error}`);
                 });
     }
 

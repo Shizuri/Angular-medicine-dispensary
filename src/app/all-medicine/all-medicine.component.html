@@ -1,52 +1,39 @@
-<div *ngIf="loaded">
+<div *ngIf="numberOfMedicines != 0">
 
-  <div *ngIf="numberOfMedicines != 0">
+  <h3>Search medicines:</h3>
+  <input type="search" [formControl]="searchMed">
 
-    <h3>Search medicines:</h3>
-    <input type="search" [formControl]="searchMed">
-
-    <div *ngIf="hasSearchValue">
-      <table>
-        <tr>
-          <th>Medicine name</th>
-          <th>Quantity</th>
-          <th>Expiration date</th>
-        </tr>
-        <tr *ngFor="let med of newMeds">
-          <td>{{med.medicineName}}</td>
-          <td>{{med.quantity}}</td>
-          <td>{{med.expirationDate}}</td>
-        </tr>
-      </table>
-    </div>
-
-    <h3>All medicines:</h3>
+  <div *ngIf="hasSearchValue">
     <table>
       <tr>
         <th>Medicine name</th>
         <th>Quantity</th>
         <th>Expiration date</th>
       </tr>
-      <tr *ngFor="let med of medicines">
+      <tr *ngFor="let med of newMeds">
         <td>{{med.medicineName}}</td>
         <td>{{med.quantity}}</td>
         <td>{{med.expirationDate}}</td>
       </tr>
     </table>
-
   </div>
 
-  <div *ngIf="numberOfMedicines == 0">
-    No medicines in stock at this time.
-  </div>
+  <h3>All medicines:</h3>
+  <table>
+    <tr>
+      <th>Medicine name</th>
+      <th>Quantity</th>
+      <th>Expiration date</th>
+    </tr>
+    <tr *ngFor="let med of medicines">
+      <td>{{med.medicineName}}</td>
+      <td>{{med.quantity}}</td>
+      <td>{{med.expirationDate}}</td>
+    </tr>
+  </table>
 
 </div>
 
-<div *ngIf="!loaded && !errorMessage">
-    Loading ...
-</div>
-
-<div *ngIf="errorMessage">
-  <p>Error Loading All Medicines Component</p>
-  <!-- {{errorMessage}} -->
+<div *ngIf="numberOfMedicines == 0">
+  No medicines in stock at this time.
 </div>
