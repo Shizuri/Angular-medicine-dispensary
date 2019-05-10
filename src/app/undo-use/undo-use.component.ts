@@ -40,8 +40,6 @@ export class UndoUseComponent implements OnInit {
             body: this.undoForm.value
           }
 
-        // console.log(`undoForm json is: ${this.undoForm.value}`);
-        // console.log(JSON.stringify(this.undoForm.value));
         this.data.undoUse(options)
             .subscribe(
                 data => {
@@ -75,8 +73,6 @@ export class UndoUseComponent implements OnInit {
             patientName: this.selectedValue.patientName,
             dateOfAdministration: this.selectedValue.dateOfAdministration
         });
-
-        // console.log(`Selected value: ${JSON.stringify(this.selectedValue)}`);
     }
 
     // TODO: Make a search dropdown menu

@@ -45,10 +45,8 @@ export class UseComponent implements OnInit {
                 },
                 error => {
                     console.log('Error with useMedicine', error);
-                    // this.errorMessage = error.error;
                     this.confirmationMessage = false;
                     this.errorMessage = true;
-                    console.log('Error Message:', this.errorMessage);
                 });
     }
 
@@ -56,9 +54,7 @@ export class UseComponent implements OnInit {
         this.data.getAllMedicine()
             .subscribe(med => {
                 this.medicines = med;
-                // console.log(this.medicines);
             });
-        // console.log(`medicinies: ${this.medicines}`);
     }
 
     inputMedicineValues() {

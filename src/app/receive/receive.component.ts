@@ -33,10 +33,6 @@ export class ReceiveComponent implements OnInit {
         this.addMedicine();
     }
 
-    // addMedicine() {
-    //     this.data.addMedicine(this.medicineForm.value);
-    // }
-
     addMedicine() {
         this.data.addMedicinePacked(this.medicineForm.value)
             .subscribe(data => {

@@ -39,8 +39,6 @@ export class DeleteMedicineComponent implements OnInit {
             body: this.deleteForm.value
           }
 
-        // console.log(`delete json is: ${this.deleteForm.value}`);
-        // console.log(JSON.stringify(this.deleteForm.value));
         this.data.deleteMedicine(options)
             .subscribe(
                 data => {
@@ -59,9 +57,7 @@ export class DeleteMedicineComponent implements OnInit {
         this.data.getAllMedicine()
             .subscribe(med => {
                 this.medicines = med;
-                // console.log(this.medicines);
             });
-        // console.log(`medicinies: ${this.medicines}`);
     }
 
     inputMedicineValues() {
@@ -69,8 +65,6 @@ export class DeleteMedicineComponent implements OnInit {
             medicineName: this.selectedValue.medicineName,
             expirationDate: this.selectedValue.expirationDate
         });
-
-        // console.log(this.selectedValue);
     }
 
 }
