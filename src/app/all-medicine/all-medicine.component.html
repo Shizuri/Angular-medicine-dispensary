@@ -4,32 +4,34 @@
 </div>
 
 <div *ngIf="newMeds">
-  <div *ngFor="let med of newMeds">
-    <div>medicineName: {{med.medicineName}} quantity: {{med.quantity}} expirationDate: {{med.expirationDate}}</div>
-  </div>
-</div>
-
-<!-- <h3>All medicines:</h3>
-<div *ngIf="medicines">
-  <div *ngFor="let med of medicines">
-    <div>medicineName: {{med.medicineName}} quantity: {{med.quantity}} expirationDate: {{med.expirationDate}}</div>
-  </div>
-</div> -->
-
-<!-- <div *ngIf="test.length > 1"> -->
-<h3>All medicines:</h3>
   <table>
     <tr>
       <th>Medicine name</th>
       <th>Quantity</th>
       <th>Expiration date</th>
     </tr>
-    <tr *ngFor="let med of medicines">
+    <tr *ngFor="let med of newMeds">
       <td>{{med.medicineName}}</td>
       <td>{{med.quantity}}</td>
       <td>{{med.expirationDate}}</td>
     </tr>
   </table>
+</div>
+
+<!-- <div *ngIf="test.length > 1"> -->
+<h3>All medicines:</h3>
+<table>
+  <tr>
+    <th>Medicine name</th>
+    <th>Quantity</th>
+    <th>Expiration date</th>
+  </tr>
+  <tr *ngFor="let med of medicines">
+    <td>{{med.medicineName}}</td>
+    <td>{{med.quantity}}</td>
+    <td>{{med.expirationDate}}</td>
+  </tr>
+</table>
 <!-- </div> -->
 
 <!-- <div *ngIf="test.length == 1">No medicines in stock at this time.</div> -->
