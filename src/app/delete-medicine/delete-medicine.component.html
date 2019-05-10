@@ -10,7 +10,7 @@
   <input type="date" formControlName="expirationDate" required>
 
   <label for="quantity">Quantity</label>
-  <input type="number" formControlName="quantity" placeholder="quantity">
+  <input type="number" formControlName="quantity" placeholder="0 or empty = ALL">
 
   <button type="submit" [disabled]="!deleteForm.valid">Submit</button>
 </form>
