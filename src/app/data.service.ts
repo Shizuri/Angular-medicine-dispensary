@@ -21,7 +21,7 @@ export class DataService {
     }
 
     getAllUses() {
-        return this.http.get(this.useUrl);
+        return this.http.get<any[]>(this.useUrl);
     }
 
     // addMedicine(medicine) {

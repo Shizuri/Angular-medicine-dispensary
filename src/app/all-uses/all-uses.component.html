@@ -1,39 +1,56 @@
 <div *ngIf="loaded">
-  <h3>Search all uses by medicine or patient name:</h3>
-  <input type="search" [formControl]="searchMed">
+
+  <div *ngIf="numberOfUses != 0">
+
+    <h3>Search all uses by medicine or patient name:</h3>
+    <input type="search" [formControl]="searchMed">
+
+    <div *ngIf="hasSearchValue">
+      <table>
+        <tr>
+          <th>Medicine name</th>
+          <th>Expiration date</th>
+          <th>Patient name</th>
+          <th>Date of administration</th>
+        </tr>
+        <tr *ngFor="let use of newUses">
+          <td>{{use.medicineName}}</td>
+          <td>{{use.expirationDate}}</td>
+          <td>{{use.patientName}}</td>
+          <td>{{use.dateOfAdministration}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>All uses:</h3>
+    <table>
+      <tr>
+        <th>Medicine name</th>
+        <th>Expiration date</th>
+        <th>Patient name</th>
+        <th>Date of administration</th>
+      </tr>
+      <tr *ngFor="let use of uses">
+        <td>{{use.medicineName}}</td>
+        <td>{{use.expirationDate}}</td>
+        <td>{{use.patientName}}</td>
+        <td>{{use.dateOfAdministration}}</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div *ngIf="numberOfUses == 0">
+    No medicines have been used at this time.
+  </div>
+
 </div>
 
-<div *ngIf="newUses">
-  <table>
-    <tr>
-      <th>Medicine name</th>
-      <th>Expiration date</th>
-      <th>Patient name</th>
-      <th>Date of administration</th>
-    </tr>
-    <tr *ngFor="let use of newUses">
-      <td>{{use.medicineName}}</td>
-      <td>{{use.expirationDate}}</td>
-      <td>{{use.patientName}}</td>
-      <td>{{use.dateOfAdministration}}</td>
-    </tr>
-  </table>
+<div *ngIf="!loaded && !errorMessage">
+  Loading ...
 </div>
 
-<h3>All medicines:</h3>
-<div *ngIf="uses">
-  <table>
-    <tr>
-      <th>Medicine name</th>
-      <th>Expiration date</th>
-      <th>Patient name</th>
-      <th>Date of administration</th>
-    </tr>
-    <tr *ngFor="let use of uses">
-      <td>{{use.medicineName}}</td>
-      <td>{{use.expirationDate}}</td>
-      <td>{{use.patientName}}</td>
-      <td>{{use.dateOfAdministration}}</td>
-    </tr>
-  </table>
+<div *ngIf="errorMessage">
+  <p>Error Loading All Use Component</p>
+  <!-- {{errorMessage}} -->
 </div>

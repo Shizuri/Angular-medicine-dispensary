@@ -9,10 +9,14 @@ import { FormControl } from '@angular/forms';
 })
 export class AllUsesComponent implements OnInit {
 
-    uses;
+    uses: any[] = [];
     searchMed = new FormControl('');
     newUses: any[] = [];
+
+    numberOfUses;
+    hasSearchValue = false;
     loaded = false;
+    errorMessage;
 
     constructor(private data: DataService) { }
 
@@ -23,10 +27,16 @@ export class AllUsesComponent implements OnInit {
 
     getAllUses() {
         this.data.getAllUses()
-            .subscribe(use => {
-                this.uses = use;
-            });
-        this.loaded = true;
+            .subscribe(
+                use => {
+                    this.uses = use;
+                    this.numberOfUses = this.uses.length;
+                    this.loaded = true;
+                },
+                error => {
+                    this.errorMessage = JSON.stringify(error);
+                    this.loaded = false;
+                });
     }
 
     listByMedicineOrPatient() {
@@ -37,12 +47,14 @@ export class AllUsesComponent implements OnInit {
 
     findMedicineOrPatient(med: String) {
         this.newUses = [];
+        this.hasSearchValue = false;
 
         if (med.trim()) {
             this.uses.forEach(element => {
                 if (element.medicineName.toLowerCase().includes(med.toLowerCase())
                     || element.patientName.toLowerCase().includes(med.toLowerCase())) {
                     this.newUses.push(element);
+                    this.hasSearchValue = true;
                 }
             });
         }
