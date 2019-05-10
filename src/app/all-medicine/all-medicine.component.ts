@@ -31,7 +31,7 @@ export class AllMedicineComponent implements OnInit {
                     this.numberOfMedicines = this.medicines.length;
                 },
                 error => {
-                    console.log(`Error: ${error}`);
+                    console.log(`Error. Backend might be down`);
                 });
     }
 

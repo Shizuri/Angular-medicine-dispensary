@@ -58,4 +58,8 @@ export class DataService {
         return this.http.delete(this.receiveUrl, options);
     }
 
+    undoUse(options){
+        return this.http.delete(this.useUrl, options);
+    }
+
 }

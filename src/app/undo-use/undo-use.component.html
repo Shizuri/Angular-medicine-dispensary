@@ -1,3 +1,37 @@
-<p>
-  undo-use works!
-</p>
+<div>
+    <h3>Undo medicine use</h3>
+  </div>
+
+  <form [formGroup]="undoForm" (ngSubmit)="onSubmit()">
+    <label for="medicineName">Medicine Name</label>
+    <input type="text" formControlName="medicineName" placeholder="medicine name" required>
+
+    <label for="expirationDate">Expiration Date</label>
+    <input type="date" formControlName="expirationDate" required>
+
+    <label for="patientName">Patient Name</label>
+    <input type="text" formControlName="patientName" placeholder="patient name" required>
+
+    <label for="dateOfAdministration">Date of Administration</label>
+    <input type="date" formControlName="dateOfAdministration" required>
+
+    <button type="submit" [disabled]="!undoForm.valid">Submit</button>
+  </form>
+
+  <div>
+    <h3>Pick medicine use to undo</h3>
+  </div>
+
+  <select [(ngModel)]="selectedValue" (change)="inputUseMedicineValues()">
+    <option disabled selected>Please select...</option>
+    <option *ngFor="let item of uses" [ngValue]="item">{{item.medicineName}} with expiration date:
+      {{item.expirationDate}} used on {{item.patientName}} on date {{item.dateOfAdministration}}</option>
+  </select>
+
+  <p class="error" *ngIf="errorMessage">
+    Error: No such use!
+  </p>
+
+  <p class="confirmation" *ngIf="confirmationMessage">
+    Use of medicine was successfully reverted.
+  </p>

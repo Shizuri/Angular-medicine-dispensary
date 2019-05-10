@@ -31,7 +31,7 @@ export class AllUsesComponent implements OnInit {
                     this.numberOfUses = this.uses.length;
                 },
                 error => {
-                    console.log(`Error: ${error}`);
+                    console.log(`Error. Backend might be down`);
                 });
     }
 
