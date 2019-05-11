@@ -14,7 +14,10 @@ export class UseComponent implements OnInit {
     errorMessage;
     confirmationMessage;
     medicines = [];
-    selectedValue: any;
+
+    searchBar = new FormControl(''); //new
+    foundBar = new FormControl(''); //new
+    foundMeds: any[] = []; //new
 
     useForm = new FormGroup({
         medicineName: new FormControl(''),
@@ -29,13 +32,14 @@ export class UseComponent implements OnInit {
     ngOnInit() {
         this.getAllMedicines();
         this.getToday();
+        this.listByMedicine();
     }
 
     onSubmit() {
-        this.useMedicineUnpack();
+        this.useMedicine();
     }
 
-    useMedicineUnpack() {
+    useMedicine() {
         this.data.useMedicinePacked(this.useForm.value)
             .subscribe(
                 data => {
@@ -54,19 +58,35 @@ export class UseComponent implements OnInit {
         this.data.getAllMedicine()
             .subscribe(med => {
                 this.medicines = med;
+                this.foundMeds = med; // fill filter data for search on load
             });
-    }
-
-    inputMedicineValues() {
-        this.useForm.patchValue({
-            medicineName: this.selectedValue.medicineName,
-            expirationDate: this.selectedValue.expirationDate
-        });
-
-        console.log(this.selectedValue);
     }
 
     getToday() {
         this.today = this.datePipe.transform(new Date(), "yyyy-MM-dd");
+    }
+
+    // search and filter code from here
+    listByMedicine() {
+        this.searchBar.valueChanges.subscribe(med => {
+            this.findMed(med);
+        });
+    }
+
+    findMed(med: String) {
+        this.foundMeds = [];
+
+        this.medicines.forEach(element => {
+            if (element.medicineName.toLowerCase().includes(med.toLowerCase())) {
+                this.foundMeds.push(element);
+            }
+        });
+    }
+
+    injectMedicineToForm() {
+        this.useForm.patchValue({
+            medicineName: this.foundBar.value.medicineName,
+            expirationDate: this.foundBar.value.expirationDate
+        });
     }
 }

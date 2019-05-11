@@ -11,7 +11,7 @@ export class AllMedicineComponent implements OnInit {
 
     medicines: any[] = [];
     searchMed = new FormControl('');
-    newMeds: any[] = [];
+    foundMeds: any[] = [];
 
     numberOfMedicines;
     hasSearchValue = false;
@@ -42,13 +42,13 @@ export class AllMedicineComponent implements OnInit {
     }
 
     findMed(med: String) {
-        this.newMeds = [];
+        this.foundMeds = [];
         this.hasSearchValue = false;
 
         if (med.trim()) {
             this.medicines.forEach(element => {
                 if (element.medicineName.toLowerCase().includes(med.toLowerCase())) {
-                    this.newMeds.push(element);
+                    this.foundMeds.push(element);
                     this.hasSearchValue = true;
                 }
             });
