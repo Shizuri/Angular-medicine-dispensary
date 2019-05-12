@@ -28,6 +28,9 @@ export class ReceiveComponent implements OnInit {
     }
 
     onSubmit() {
+        this.errorMessage = false; //for fade in
+        this.confirmationMessage = false; //for fade in
+
         console.warn(this.medicineForm.value);
         console.log(this.today);
         this.addMedicine();

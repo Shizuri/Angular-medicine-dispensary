@@ -12,8 +12,11 @@ export class UndoUseComponent implements OnInit {
 
     errorMessage;
     confirmationMessage;
-    uses= [];
-    selectedValue: any;
+    uses = [];
+
+    searchBar = new FormControl(''); //for search component
+    foundBar = new FormControl(''); //for search component
+    foundUses: any[] = []; //for search component
 
     undoForm = new FormGroup({
         medicineName: new FormControl(''),
@@ -26,19 +29,23 @@ export class UndoUseComponent implements OnInit {
 
     ngOnInit() {
         this.getAllUses();
+        this.listByUse();
     }
 
     onSubmit() {
+        this.errorMessage = false; //for fade in
+        this.confirmationMessage = false; //for fade in
+
         this.undoUse();
     }
 
     undoUse() {
         const options = {
             headers: new HttpHeaders({
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }),
             body: this.undoForm.value
-          }
+        }
 
         this.data.undoUse(options)
             .subscribe(
@@ -56,24 +63,44 @@ export class UndoUseComponent implements OnInit {
 
     getAllUses() {
         this.data.getAllUses()
-        .subscribe(
-            uses =>{
-                this.uses = uses;
-            },
-            error =>{
-                console.log(`Error: ${JSON.stringify(error)}`);
-            }
-        )
+            .subscribe(
+                uses => {
+                    this.uses = uses;
+                    this.foundUses = uses; // fill filter data for search on load
+                    console.log(uses);
+                },
+                error => {
+                    console.log(`Error: ${JSON.stringify(error)}`);
+                }
+            )
     }
 
-    inputUseMedicineValues() {
-        this.undoForm.patchValue({
-            medicineName: this.selectedValue.medicineName,
-            expirationDate: this.selectedValue.expirationDate,
-            patientName: this.selectedValue.patientName,
-            dateOfAdministration: this.selectedValue.dateOfAdministration
+    // search and filter code from here
+    listByUse() {
+        this.searchBar.valueChanges.subscribe(use => {
+            this.findUse(use);
         });
     }
 
-    // TODO: Make a search dropdown menu
+    findUse(use: String) {
+        this.foundUses = [];
+
+        this.uses.forEach(element => {
+            if (element.medicineName.toLowerCase().includes(use.toLowerCase())
+                || element.expirationDate.includes(use)
+                || element.patientName.toLowerCase().includes(use.toLocaleLowerCase())
+                || element.dateOfAdministration.includes(use)) {
+                this.foundUses.push(element);
+            }
+        });
+    }
+
+    injectMedicineToForm() {
+        this.undoForm.patchValue({
+            medicineName: this.foundBar.value.medicineName,
+            expirationDate: this.foundBar.value.expirationDate,
+            patientName: this.foundBar.value.patientName,
+            dateOfAdministration: this.foundBar.value.dateOfAdministration
+        });
+    }
 }

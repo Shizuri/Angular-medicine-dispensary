@@ -36,6 +36,9 @@ export class UseComponent implements OnInit {
     }
 
     onSubmit() {
+        this.errorMessage = false; //for fade in
+        this.confirmationMessage = false; //for fade in
+
         this.useMedicine();
     }
 

@@ -32,6 +32,9 @@ export class DeleteMedicineComponent implements OnInit {
     }
 
     onSubmit() {
+        this.errorMessage = false; //for fade in
+        this.confirmationMessage = false; //for fade in
+
         this.deleteMedicine();
     }
 
