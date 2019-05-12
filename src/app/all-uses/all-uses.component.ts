@@ -49,7 +49,8 @@ export class AllUsesComponent implements OnInit {
             this.uses.forEach(element => {
                 if (element.medicineName.toLowerCase().includes(med.toLowerCase())
                     || element.patientName.toLowerCase().includes(med.toLowerCase())
-                    || element.expirationDate.includes(med)) {
+                    || element.expirationDate.includes(med)
+                    || element.dateOfAdministration.includes(med)) {
                     this.newUses.push(element);
                     this.hasSearchValue = true;
                 }

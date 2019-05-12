@@ -43,7 +43,7 @@ export class UseComponent implements OnInit {
     }
 
     useMedicine() {
-        this.data.useMedicinePacked(this.useForm.value)
+        this.data.useMedicine(this.useForm.value)
             .subscribe(
                 data => {
                     console.log('POST Request for useMedicine is successful', data);

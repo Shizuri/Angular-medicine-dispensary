@@ -37,7 +37,7 @@ export class ReceiveComponent implements OnInit {
     }
 
     addMedicine() {
-        this.data.addMedicinePacked(this.medicineForm.value)
+        this.data.addMedicine(this.medicineForm.value)
             .subscribe(data => {
                 console.log('POST Request for addMedicine is successful', data);
                 this.confirmationMessage = true;
