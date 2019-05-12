@@ -15,9 +15,9 @@ export class UseComponent implements OnInit {
     confirmationMessage;
     medicines = [];
 
-    searchBar = new FormControl(''); //new
-    foundBar = new FormControl(''); //new
-    foundMeds: any[] = []; //new
+    searchBar = new FormControl(''); //for search component
+    foundBar = new FormControl(''); //for search component
+    foundMeds: any[] = []; //for search component
 
     useForm = new FormGroup({
         medicineName: new FormControl(''),
@@ -77,7 +77,8 @@ export class UseComponent implements OnInit {
         this.foundMeds = [];
 
         this.medicines.forEach(element => {
-            if (element.medicineName.toLowerCase().includes(med.toLowerCase())) {
+            if (element.medicineName.toLowerCase().includes(med.toLowerCase())
+                || element.expirationDate.includes(med)) {
                 this.foundMeds.push(element);
             }
         });

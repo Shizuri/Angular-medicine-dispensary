@@ -15,20 +15,17 @@
   <button type="submit" [disabled]="!deleteForm.valid">Submit</button>
 </form>
 
-<div>
-  <h3>Pick medicine to delete</h3>
-</div>
 
-<select [(ngModel)]="selectedValue" (change)="inputMedicineValues()">
-  <option disabled selected>Please select...</option>
-  <option *ngFor="let item of medicines" [ngValue]="item">{{item.medicineName}} with expiration date:
+<h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
+<input type="search" [formControl]="searchBar">
+
+<h3>Pick medicine to delete</h3>
+
+<span class="error" *ngIf="errorMessage">Error: No such medicine!</span>
+<span class="confirmation" *ngIf="confirmationMessage">Medicine was successfully deleted.</span>
+
+<br />
+<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="20">
+  <option *ngFor="let item of foundMeds" [ngValue]="item">{{item.medicineName}} with expiration date:
     {{item.expirationDate}}</option>
 </select>
-
-<p class="error" *ngIf="errorMessage">
-  Error: No such medicine!
-</p>
-
-<p class="confirmation" *ngIf="confirmationMessage">
-  Medicine was successfully deleted.
-</p>

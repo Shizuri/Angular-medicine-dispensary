@@ -13,7 +13,10 @@ export class DeleteMedicineComponent implements OnInit {
     errorMessage;
     confirmationMessage;
     medicines = [];
-    selectedValue: any;
+
+    searchBar = new FormControl(''); //for search component
+    foundBar = new FormControl(''); //for search component
+    foundMeds: any[] = []; //for search component
 
     deleteForm = new FormGroup({
         medicineName: new FormControl(''),
@@ -25,6 +28,7 @@ export class DeleteMedicineComponent implements OnInit {
 
     ngOnInit() {
         this.getAllMedicines();
+        this.listByMedicine();
     }
 
     onSubmit() {
@@ -57,13 +61,32 @@ export class DeleteMedicineComponent implements OnInit {
         this.data.getAllMedicine()
             .subscribe(med => {
                 this.medicines = med;
+                this.foundMeds = med; // fill filter data for search on load
             });
     }
 
-    inputMedicineValues() {
+    // search and filter code from here
+    listByMedicine() {
+        this.searchBar.valueChanges.subscribe(med => {
+            this.findMed(med);
+        });
+    }
+
+    findMed(med: String) {
+        this.foundMeds = [];
+
+        this.medicines.forEach(element => {
+            if (element.medicineName.toLowerCase().includes(med.toLowerCase())
+                || element.expirationDate.includes(med)) {
+                this.foundMeds.push(element);
+            }
+        });
+    }
+
+    injectMedicineToForm() {
         this.deleteForm.patchValue({
-            medicineName: this.selectedValue.medicineName,
-            expirationDate: this.selectedValue.expirationDate
+            medicineName: this.foundBar.value.medicineName,
+            expirationDate: this.foundBar.value.expirationDate
         });
     }
 

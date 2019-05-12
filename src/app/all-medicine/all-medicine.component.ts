@@ -47,7 +47,8 @@ export class AllMedicineComponent implements OnInit {
 
         if (med.trim()) {
             this.medicines.forEach(element => {
-                if (element.medicineName.toLowerCase().includes(med.toLowerCase())) {
+                if (element.medicineName.toLowerCase().includes(med.toLowerCase())
+                || element.expirationDate.includes(med)) {
                     this.foundMeds.push(element);
                     this.hasSearchValue = true;
                 }
