@@ -11,10 +11,7 @@ export class AllUsesComponent implements OnInit {
 
     uses: any[] = [];
     searchMed = new FormControl('');
-    newUses: any[] = [];
-
-    numberOfUses;
-    hasSearchValue = false;
+    foundUses: any[] = [];
 
     constructor(private data: DataService) { }
 
@@ -28,7 +25,7 @@ export class AllUsesComponent implements OnInit {
             .subscribe(
                 use => {
                     this.uses = use;
-                    this.numberOfUses = this.uses.length;
+                    this.foundUses = use;
                 },
                 error => {
                     console.log(`Error. Backend might be down`);
@@ -42,19 +39,15 @@ export class AllUsesComponent implements OnInit {
     }
 
     findMedicineOrPatient(med: String) {
-        this.newUses = [];
-        this.hasSearchValue = false;
+        this.foundUses = [];
 
-        if (med.trim()) {
-            this.uses.forEach(element => {
-                if (element.medicineName.toLowerCase().includes(med.toLowerCase())
-                    || element.patientName.toLowerCase().includes(med.toLowerCase())
-                    || element.expirationDate.includes(med)
-                    || element.dateOfAdministration.includes(med)) {
-                    this.newUses.push(element);
-                    this.hasSearchValue = true;
-                }
-            });
-        }
+        this.uses.forEach(element => {
+            if (element.medicineName.toLowerCase().includes(med.toLowerCase())
+                || element.patientName.toLowerCase().includes(med.toLowerCase())
+                || element.expirationDate.includes(med)
+                || element.dateOfAdministration.includes(med)) {
+                this.foundUses.push(element);
+            }
+        });
     }
 }

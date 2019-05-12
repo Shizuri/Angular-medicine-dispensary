@@ -49,12 +49,10 @@ export class DeleteMedicineComponent implements OnInit {
         this.data.deleteMedicine(options)
             .subscribe(
                 data => {
-                    console.log('DELETE Request for deleteMedicine is successful', data);
                     this.confirmationMessage = true;
                     this.errorMessage = false;
                 },
                 error => {
-                    console.log('Error with deleteMedicine', error);
                     this.confirmationMessage = false;
                     this.errorMessage = true;
                 });

@@ -1,43 +1,18 @@
-<div *ngIf="numberOfUses != 0">
+<h3>Search uses by <i>Medicine Name</i>, <i>Expiration Date</i>, <i>Patient Name</i> or <i>Date of Administration</i>
+</h3>
+<input type="search" [formControl]="searchMed">
 
-  <h3>Search uses by <i>Medicine Name</i>, <i>Expiration Date</i>, <i>Patient Name</i> or <i>Date of Administration</i></h3>
-  <input type="search" [formControl]="searchMed">
-
-  <div *ngIf="hasSearchValue">
-    <table>
-      <tr>
-        <th>Medicine name</th>
-        <th>Expiration date</th>
-        <th>Patient name</th>
-        <th>Date of administration</th>
-      </tr>
-      <tr *ngFor="let use of newUses">
-        <td>{{use.medicineName}}</td>
-        <td>{{use.expirationDate}}</td>
-        <td>{{use.patientName}}</td>
-        <td>{{use.dateOfAdministration}}</td>
-      </tr>
-    </table>
-  </div>
-
-  <h3>All uses:</h3>
-  <table>
-    <tr>
-      <th>Medicine name</th>
-      <th>Expiration date</th>
-      <th>Patient name</th>
-      <th>Date of administration</th>
-    </tr>
-    <tr *ngFor="let use of uses">
-      <td>{{use.medicineName}}</td>
-      <td>{{use.expirationDate}}</td>
-      <td>{{use.patientName}}</td>
-      <td>{{use.dateOfAdministration}}</td>
-    </tr>
-  </table>
-
-</div>
-
-<div *ngIf="numberOfUses == 0">
-  No medicines have been used at this time.
-</div>
+<table>
+  <tr>
+    <th>Medicine name</th>
+    <th>Expiration date</th>
+    <th>Patient name</th>
+    <th>Date of administration</th>
+  </tr>
+  <tr *ngFor="let use of foundUses">
+    <td>{{use.medicineName}}</td>
+    <td>{{use.expirationDate}}</td>
+    <td>{{use.patientName}}</td>
+    <td>{{use.dateOfAdministration}}</td>
+  </tr>
+</table>

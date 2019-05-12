@@ -31,20 +31,16 @@ export class ReceiveComponent implements OnInit {
         this.errorMessage = false; //for fade in
         this.confirmationMessage = false; //for fade in
 
-        console.warn(this.medicineForm.value);
-        console.log(this.today);
         this.addMedicine();
     }
 
     addMedicine() {
         this.data.addMedicine(this.medicineForm.value)
             .subscribe(data => {
-                console.log('POST Request for addMedicine is successful', data);
                 this.confirmationMessage = true;
                 this.errorMessage = false;
             },
                 error => {
-                    console.log('Error with addMedicine', error);
                     this.confirmationMessage = false;
                     this.errorMessage = true;
                 }

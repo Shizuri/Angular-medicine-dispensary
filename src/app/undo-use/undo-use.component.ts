@@ -50,12 +50,10 @@ export class UndoUseComponent implements OnInit {
         this.data.undoUse(options)
             .subscribe(
                 data => {
-                    console.log('DELETE Request for UNDO USE is successful', data);
                     this.confirmationMessage = true;
                     this.errorMessage = false;
                 },
                 error => {
-                    console.log('Error with Undo Use', error);
                     this.confirmationMessage = false;
                     this.errorMessage = true;
                 });
@@ -67,7 +65,6 @@ export class UndoUseComponent implements OnInit {
                 uses => {
                     this.uses = uses;
                     this.foundUses = uses; // fill filter data for search on load
-                    console.log(uses);
                 },
                 error => {
                     console.log(`Error: ${JSON.stringify(error)}`);

@@ -1,11 +1,22 @@
-<h1>Medicine Dispensary</h1>
-<nav>
-  <a routerLink="/all-medicine">All Medicine</a>
-  <a routerLink="/all-uses">All Uses</a>
-  <a routerLink="/use">Use Medicine</a>
-  <a routerLink="/receive">Receive Medicine</a>
-  <a routerLink="/delete-medicine">Delete Medicine</a>
-  <a routerLink="/undo-use">Undo Use</a>
-</nav>
+<div *ngIf="alive">
 
-<router-outlet></router-outlet>
+  <h1>Medicine Dispensary</h1>
+  <nav>
+    <a routerLink="/all-medicine">All Medicine</a>
+    <a routerLink="/all-uses">All Uses</a>
+    <a routerLink="/use">Use Medicine</a>
+    <a routerLink="/receive">Receive Medicine</a>
+    <a routerLink="/delete-medicine">Delete Medicine</a>
+    <a routerLink="/undo-use">Undo Use</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</div>
+
+<div *ngIf="!alive && !errorMessage">
+  Loading ...
+</div>
+<div *ngIf="!alive && errorMessage">
+  Error connecting to server.
+</div>

@@ -8,10 +8,10 @@ import { Observable} from 'rxjs';
 
 export class DataService {
 
-    receiveUrl = 'http://localhost:8080/receive';
-    useUrl = 'http://localhost:8080/use';
-    // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
-    // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
+    // receiveUrl = 'http://localhost:8080/receive';
+    // useUrl = 'http://localhost:8080/use';
+    receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
+    useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
 
     constructor(private http: HttpClient) { }
 
@@ -37,6 +37,10 @@ export class DataService {
 
     undoUse(options){
         return this.http.delete(this.useUrl, options);
+    }
+
+    isAlive(){
+        return this.http.get('http://localhost:8080/receive/alive', {responseType: 'text'});
     }
 
 }

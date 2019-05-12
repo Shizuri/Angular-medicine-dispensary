@@ -1,39 +1,15 @@
-<div *ngIf="numberOfMedicines != 0">
+<h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
+<input type="search" [formControl]="searchMed">
 
-  <h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
-  <input type="search" [formControl]="searchMed">
-
-  <div *ngIf="hasSearchValue">
-    <table>
-      <tr>
-        <th>Medicine name</th>
-        <th>Quantity</th>
-        <th>Expiration date</th>
-      </tr>
-      <tr *ngFor="let med of foundMeds">
-        <td>{{med.medicineName}}</td>
-        <td>{{med.quantity}}</td>
-        <td>{{med.expirationDate}}</td>
-      </tr>
-    </table>
-  </div>
-
-  <h3>All medicines:</h3>
-  <table>
-    <tr>
-      <th>Medicine name</th>
-      <th>Quantity</th>
-      <th>Expiration date</th>
-    </tr>
-    <tr *ngFor="let med of medicines">
-      <td>{{med.medicineName}}</td>
-      <td>{{med.quantity}}</td>
-      <td>{{med.expirationDate}}</td>
-    </tr>
-  </table>
-
-</div>
-
-<div *ngIf="numberOfMedicines == 0">
-  No medicines in stock at this time.
-</div>
+<table>
+  <tr>
+    <th>Medicine name</th>
+    <th>Quantity</th>
+    <th>Expiration date</th>
+  </tr>
+  <tr *ngFor="let med of foundMeds">
+    <td>{{med.medicineName}}</td>
+    <td>{{med.quantity}}</td>
+    <td>{{med.expirationDate}}</td>
+  </tr>
+</table>

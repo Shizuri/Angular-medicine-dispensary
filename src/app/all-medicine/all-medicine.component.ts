@@ -13,9 +13,6 @@ export class AllMedicineComponent implements OnInit {
     searchMed = new FormControl('');
     foundMeds: any[] = [];
 
-    numberOfMedicines;
-    hasSearchValue = false;
-
     constructor(private data: DataService) { }
 
     ngOnInit() {
@@ -28,7 +25,7 @@ export class AllMedicineComponent implements OnInit {
             .subscribe(
                 med => {
                     this.medicines = med;
-                    this.numberOfMedicines = this.medicines.length;
+                    this.foundMeds = med;
                 },
                 error => {
                     console.log(`Error. Backend might be down`);
@@ -43,16 +40,12 @@ export class AllMedicineComponent implements OnInit {
 
     findMed(med: String) {
         this.foundMeds = [];
-        this.hasSearchValue = false;
 
-        if (med.trim()) {
-            this.medicines.forEach(element => {
-                if (element.medicineName.toLowerCase().includes(med.toLowerCase())
+        this.medicines.forEach(element => {
+            if (element.medicineName.toLowerCase().includes(med.toLowerCase())
                 || element.expirationDate.includes(med)) {
-                    this.foundMeds.push(element);
-                    this.hasSearchValue = true;
-                }
-            });
-        }
+                this.foundMeds.push(element);
+            }
+        });
     }
 }

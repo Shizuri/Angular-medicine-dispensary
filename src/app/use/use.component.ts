@@ -46,12 +46,10 @@ export class UseComponent implements OnInit {
         this.data.useMedicine(this.useForm.value)
             .subscribe(
                 data => {
-                    console.log('POST Request for useMedicine is successful', data);
                     this.confirmationMessage = true;
                     this.errorMessage = false;
                 },
                 error => {
-                    console.log('Error with useMedicine', error);
                     this.confirmationMessage = false;
                     this.errorMessage = true;
                 });
