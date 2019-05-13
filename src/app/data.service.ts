@@ -8,10 +8,12 @@ import { Observable} from 'rxjs';
 
 export class DataService {
 
-    receiveUrl = 'http://localhost:8080/receive';
-    useUrl = 'http://localhost:8080/use';
-    // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
-    // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
+    // receiveUrl = 'http://localhost:8080/receive';
+    // useUrl = 'http://localhost:8080/use';
+    // aliveUrl = 'http://localhost:8080/receive/alive';
+    receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
+    useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
+    aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
 
     constructor(private http: HttpClient) { }
 
@@ -40,7 +42,7 @@ export class DataService {
     }
 
     isAlive(){
-        return this.http.get('http://localhost:8080/receive/alive', {responseType: 'text'});
+        return this.http.get(this.aliveUrl, {responseType: 'text'});
     }
 
 }
