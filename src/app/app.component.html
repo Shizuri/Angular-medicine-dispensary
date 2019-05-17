@@ -13,6 +13,8 @@
       <a routerLink="/receive">Receive Medicine</a>
       <a routerLink="/delete-medicine">Delete Medicine</a>
       <a routerLink="/undo-use">Undo Use</a>
+      <span *ngIf="role == 'ADMIN'">ADMIN</span>
+      <span *ngIf="role == 'USER'">USER</span>
       <button (click)="logOut()">Log out</button>
     </nav>
 

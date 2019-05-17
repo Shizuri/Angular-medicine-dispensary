@@ -11,6 +11,9 @@ export class DataService {
     private loggedIn = new BehaviorSubject<boolean>(false); //for login
     currentLoggedIn = this.loggedIn.asObservable(); //for login
 
+    // private role = new BehaviorSubject<string>('USER'); //for login
+    // currentRole = this.role.asObservable(); //for login
+
     receiveUrl = 'http://localhost:8080/receive';
     useUrl = 'http://localhost:8080/use';
     aliveUrl = 'http://localhost:8080/receive/alive';
@@ -21,35 +24,42 @@ export class DataService {
 
     constructor(private http: HttpClient) { }
 
-    logIn(user) { //for login
-        this.http.post(this.loginUrl, user)
-            .subscribe(
-                res => {
-                    console.log(`Result: ${res}`);
-                    this.loggedIn.next(true);
-                    localStorage.setItem('state', 'true');
-                },
-                error => {
-                    console.log(`Error: ${JSON.stringify(error.error)}`);
-                    this.loggedIn.next(false);
-                }
-            );
-    }
+    // logIn(user) { //for login
+    //     this.http.post(this.loginUrl, user)
+    //         .subscribe(
+    //             res => {
+    //                 console.log(`Result: ${res}`);
+    //                 this.loggedIn.next(true);
+    //                 localStorage.setItem('state', 'true');
+    //             },
+    //             error => {
+    //                 console.log(`Error: ${JSON.stringify(error.error)}`);
+    //                 this.loggedIn.next(false);
+    //             }
+    //         );
+    // }
 
-    logIn2(user) { //for login
+    logIn(user):Observable<any> { //for login
         return this.http.post(this.loginUrl, user);
     }
 
     logOut() { //for login
         this.loggedIn.next(false);
         localStorage.setItem('state', 'false');
+        localStorage.setItem('role', 'USER');
     }
 
     stateOfLogin(): any { //for login
-        let value = localStorage.getItem('state');
-        console.log(`state of login: ${value}`);
-        return value;
+        let state = localStorage.getItem('state');
+        let role = localStorage.getItem('role');
+        console.log(`state of login: ${state}`);
+        console.log(`role of user : ${role}`);
+        return state;
     }
+
+    // setRole(role){
+    //     this.role.next(role.role);
+    // }
 
     on() { //for login
         this.loggedIn.next(true);

@@ -23,14 +23,6 @@ export class AllMedicineComponent implements OnInit {
         this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //login
     }
 
-    setToOn(){ //login
-        this.data.on();
-    }
-
-    setToOff(){ //login
-        this.data.off();
-    }
-
     getAllMedicine() {
         this.data.getAllMedicine()
             .subscribe(

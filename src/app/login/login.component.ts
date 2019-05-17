@@ -37,23 +37,29 @@ export class LoginComponent implements OnInit {
     //     this.data.logIn(this.loginForm.value);
     // }
 
-    logIn(){
-        this.data.logIn2(this.loginForm.value)
-        .subscribe(
-            res => {
-                console.log(`Result: ${res}`);
-                this.data.on();
-                localStorage.setItem('state', 'true');
-                this.confirmationMessage = true;
-                this.errorMessage = false;
-            },
-            error =>{
-                console.log(`Error: ${JSON.stringify(error.error)}`);
-                this.data.off();
-                this.errorMessage = true;
-                this.confirmationMessage = false;
-            }
-        );
+    logIn() {
+        this.data.logIn(this.loginForm.value)
+            .subscribe(
+                res => {
+                    console.log(`Result: ${JSON.stringify(res)}`);
+                    if (res.active == true) {
+                        this.data.on();
+                        // this.data.setRole(res.role);
+                        localStorage.setItem('state', 'true');
+                        localStorage.setItem('role', res.role);
+                        this.confirmationMessage = true;
+                        this.errorMessage = false;
+                        window.location.reload(); // might not be the best solution
+                    }
+
+                },
+                error => {
+                    console.log(`Error: ${JSON.stringify(error.error)}`);
+                    this.data.off();
+                    this.errorMessage = true;
+                    this.confirmationMessage = false;
+                }
+            );
     }
 
 }

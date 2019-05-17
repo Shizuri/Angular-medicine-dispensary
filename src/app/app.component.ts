@@ -9,6 +9,7 @@ import { DataService } from './data.service';
 export class AppComponent implements OnInit {
 
     loggedIn; //login
+    role; //login
 
     alive;
     errorMessage;
@@ -17,12 +18,16 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.isAlive();
+
         this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //login
         if(this.data.stateOfLogin() == 'true'){
             this.data.on();
         } else {
             this.data.off();
         }
+        // this.data.currentRole.subscribe(res => this.role = res); //login
+
+        this.getRole();
     }
 
     isAlive() {
@@ -37,5 +42,9 @@ export class AppComponent implements OnInit {
 
     logOut(){
         this.data.logOut();
+    }
+
+    getRole(){
+        this.role = localStorage.getItem('role');
     }
 }
