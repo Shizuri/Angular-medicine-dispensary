@@ -1,16 +1,24 @@
 <div *ngIf="alive">
 
-  <h1>Medicine Dispensary</h1>
-  <nav>
-    <a routerLink="/all-medicine">All Medicine</a>
-    <a routerLink="/all-uses">All Uses</a>
-    <a routerLink="/use">Use Medicine</a>
-    <a routerLink="/receive">Receive Medicine</a>
-    <a routerLink="/delete-medicine">Delete Medicine</a>
-    <a routerLink="/undo-use">Undo Use</a>
-  </nav>
+  <div *ngIf="!loggedIn">
+    <app-login></app-login>
+  </div>
 
-  <router-outlet></router-outlet>
+  <div *ngIf="loggedIn">
+    <h1>Medicine Dispensary</h1>
+    <nav>
+      <a routerLink="/all-medicine">All Medicine</a>
+      <a routerLink="/all-uses">All Uses</a>
+      <a routerLink="/use">Use Medicine</a>
+      <a routerLink="/receive">Receive Medicine</a>
+      <a routerLink="/delete-medicine">Delete Medicine</a>
+      <a routerLink="/undo-use">Undo Use</a>
+      <button (click)="logOut()">Log out</button>
+    </nav>
+
+    <router-outlet></router-outlet>
+  </div>
+
 
 </div>
 

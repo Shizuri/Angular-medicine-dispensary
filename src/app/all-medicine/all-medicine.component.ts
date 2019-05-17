@@ -9,6 +9,8 @@ import { FormControl } from '@angular/forms';
 })
 export class AllMedicineComponent implements OnInit {
 
+    loggedIn; //login
+
     medicines: any[] = [];
     searchMed = new FormControl('');
     foundMeds: any[] = [];
@@ -18,6 +20,15 @@ export class AllMedicineComponent implements OnInit {
     ngOnInit() {
         this.getAllMedicine();
         this.listByMedicine();
+        this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //login
+    }
+
+    setToOn(){ //login
+        this.data.on();
+    }
+
+    setToOff(){ //login
+        this.data.off();
     }
 
     getAllMedicine() {

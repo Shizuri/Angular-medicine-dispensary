@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -8,14 +8,56 @@ import { Observable} from 'rxjs';
 
 export class DataService {
 
+    private loggedIn = new BehaviorSubject<boolean>(false); //for login
+    currentLoggedIn = this.loggedIn.asObservable(); //for login
+
     receiveUrl = 'http://localhost:8080/receive';
     useUrl = 'http://localhost:8080/use';
     aliveUrl = 'http://localhost:8080/receive/alive';
+    loginUrl = 'http://localhost:8080/users/login';
     // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
     // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
     // aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
 
     constructor(private http: HttpClient) { }
+
+    logIn(user) { //for login
+        this.http.post(this.loginUrl, user)
+            .subscribe(
+                res => {
+                    console.log(`Result: ${res}`);
+                    this.loggedIn.next(true);
+                    localStorage.setItem('state', 'true');
+                },
+                error => {
+                    console.log(`Error: ${JSON.stringify(error.error)}`);
+                    this.loggedIn.next(false);
+                }
+            );
+    }
+
+    logIn2(user) { //for login
+        return this.http.post(this.loginUrl, user);
+    }
+
+    logOut() { //for login
+        this.loggedIn.next(false);
+        localStorage.setItem('state', 'false');
+    }
+
+    stateOfLogin(): any { //for login
+        let value = localStorage.getItem('state');
+        console.log(`state of login: ${value}`);
+        return value;
+    }
+
+    on() { //for login
+        this.loggedIn.next(true);
+    }
+
+    off() { //for login
+        this.loggedIn.next(false);
+    }
 
     getAllMedicine(): Observable<any[]> {
         return this.http.get<any[]>(this.receiveUrl);
@@ -33,16 +75,16 @@ export class DataService {
         return this.http.post(this.useUrl, medicine);
     }
 
-    deleteMedicine(options){
+    deleteMedicine(options) {
         return this.http.delete(this.receiveUrl, options);
     }
 
-    undoUse(options){
+    undoUse(options) {
         return this.http.delete(this.useUrl, options);
     }
 
-    isAlive(){
-        return this.http.get(this.aliveUrl, {responseType: 'text'});
+    isAlive() {
+        return this.http.get(this.aliveUrl, { responseType: 'text' });
     }
 
 }

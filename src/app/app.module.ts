@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeleteMedicineComponent } from './delete-medicine/delete-medicine.component';
 import { UndoUseComponent } from './undo-use/undo-use.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UndoUseComponent } from './undo-use/undo-use.component';
     AllMedicineComponent,
     AllUsesComponent,
     DeleteMedicineComponent,
-    UndoUseComponent
+    UndoUseComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

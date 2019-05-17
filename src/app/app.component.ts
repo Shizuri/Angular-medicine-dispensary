@@ -8,6 +8,8 @@ import { DataService } from './data.service';
 })
 export class AppComponent implements OnInit {
 
+    loggedIn; //login
+
     alive;
     errorMessage;
 
@@ -15,6 +17,12 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.isAlive();
+        this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //login
+        if(this.data.stateOfLogin() == 'true'){
+            this.data.on();
+        } else {
+            this.data.off();
+        }
     }
 
     isAlive() {
@@ -25,5 +33,9 @@ export class AppComponent implements OnInit {
             error => {
                 this.errorMessage = JSON.stringify(error);
             });
+    }
+
+    logOut(){
+        this.data.logOut();
     }
 }
