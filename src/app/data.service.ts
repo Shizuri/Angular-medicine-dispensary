@@ -17,7 +17,9 @@ export class DataService {
     receiveUrl = 'http://localhost:8080/receive';
     useUrl = 'http://localhost:8080/use';
     aliveUrl = 'http://localhost:8080/receive/alive';
-    loginUrl = 'http://localhost:8080/users/login';
+    usersUrl = 'http://localhost:8080/users';
+    createUserUrl = 'http://localhost:8080/users/create';
+
     // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
     // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
     // aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
@@ -40,7 +42,7 @@ export class DataService {
     // }
 
     logIn(user):Observable<any> { //for login
-        return this.http.post(this.loginUrl, user);
+        return this.http.post(this.usersUrl, user);
     }
 
     logOut() { //for login
@@ -69,12 +71,26 @@ export class DataService {
         this.loggedIn.next(false);
     }
 
-    getAllMedicine(): Observable<any[]> {
-        return this.http.get<any[]>(this.receiveUrl);
+    //users
+    createUser(newUser){
+        return this.http.post(this.createUserUrl , newUser);
     }
 
-    getAllUses() {
-        return this.http.get<any[]>(this.useUrl);
+    getAllUsers(): Observable<any[]> {
+        return this.http.get<any[]>(this.usersUrl);
+    }
+
+    deleteUser(options) {
+        return this.http.delete(this.usersUrl, options);
+    }
+
+    updateUser(user){
+        return this.http.put(this.usersUrl, user);
+    }
+
+    //medicine
+    getAllMedicine(): Observable<any[]> {
+        return this.http.get<any[]>(this.receiveUrl);
     }
 
     addMedicine(medicine) {
@@ -87,6 +103,11 @@ export class DataService {
 
     deleteMedicine(options) {
         return this.http.delete(this.receiveUrl, options);
+    }
+
+    //uses
+    getAllUses() {
+        return this.http.get<any[]>(this.useUrl);
     }
 
     undoUse(options) {

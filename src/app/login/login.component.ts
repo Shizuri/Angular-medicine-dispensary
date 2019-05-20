@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+// import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -14,10 +15,11 @@ export class LoginComponent implements OnInit {
 
     errorMessage;
     confirmationMessage;
+    inactiveUser;
 
     loginForm = new FormGroup({
         name: new FormControl('', Validators.required),
-        password: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required)
     });
 
     constructor(private data: DataService) { }
@@ -49,7 +51,13 @@ export class LoginComponent implements OnInit {
                         localStorage.setItem('role', res.role);
                         this.confirmationMessage = true;
                         this.errorMessage = false;
+                        this.inactiveUser = false;
+                        // this.router.navigate
                         window.location.reload(); // might not be the best solution
+                    }
+
+                    if(res.active == false){
+                        this.inactiveUser = true;
                     }
 
                 },
@@ -58,6 +66,7 @@ export class LoginComponent implements OnInit {
                     this.data.off();
                     this.errorMessage = true;
                     this.confirmationMessage = false;
+                    this.inactiveUser = false;
                 }
             );
     }

@@ -7,7 +7,7 @@
   <label for="password">Password</label>
   <input type="password" formControlName="password" placeholder="enter password" autocomplete="current-password" required>
 
-  <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+  <button type="submit" [disabled]="!loginForm.valid" routerLink="/all-medicine">Submit</button>
 </form>
 
 <p class="error" *ngIf="errorMessage">
@@ -16,4 +16,8 @@
 
 <p class="confirmation" *ngIf="confirmationMessage">
   Medicine received successfully.
+</p>
+
+<p class="error" *ngIf="inactiveUser">
+    This user is not active. Please check with your administratior.
 </p>
