@@ -6,21 +6,22 @@
 
   <div *ngIf="loggedIn">
     <h1>{{name}} using Medicine Dispensary</h1>
-    <nav>
-      <a routerLink="/all-medicine">All Medicine</a>
-      <a routerLink="/all-uses">All Uses</a>
-      <a routerLink="/use">Use Medicine</a>
-      <a routerLink="/receive">Receive Medicine</a>
-      <a routerLink="/delete-medicine">Delete Medicine</a>
-      <a routerLink="/undo-use">Undo Use</a>
-      |
-      <span *ngIf="role == 'ADMIN'">ADMIN<a routerLink="/manage-users">Manage users</a></span>
-      <span *ngIf="role == 'USER'">USER</span>
-      |
-      <a routerLink="/change-password">Change password</a>
-      <button (click)="logOut()">Log out</button>
-    </nav>
-
+    <div class="topnav">
+      <nav>
+        <a routerLink="/all-medicine">All Medicine</a>
+        <a routerLink="/all-uses">All Uses</a>
+        <a routerLink="/use">Use Medicine</a>
+        <a routerLink="/receive">Receive Medicine</a>
+        <a routerLink="/delete-medicine">Delete Medicine</a>
+        <a routerLink="/undo-use">Undo Use</a>
+        |
+        <span *ngIf="role == 'ADMIN'">ADMIN<a routerLink="/manage-users">Manage users</a></span>
+        <span *ngIf="role == 'USER'">USER</span>
+        |
+        <a routerLink="/change-password">Change password</a>
+        <button (click)="logOut()">Log out</button>
+      </nav>
+    </div>
     <hr>
 
     <router-outlet></router-outlet>
