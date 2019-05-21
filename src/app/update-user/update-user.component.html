@@ -1,0 +1,34 @@
+<h3>Select user to update</h3>
+
+<form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+  <label for="name">Original User Name</label>
+  <input type="text" formControlName="name" placeholder="original user name" readonly>
+
+  <label for="newName">New Name</label>
+  <input type="text" formControlName="newName" placeholder="new user name" required>
+
+  <label for="role">Role</label>
+  <select formControlName="role" required>
+    <option value="USER">USER</option>
+    <option value="ADMIN">ADMIN</option>
+  </select>
+
+  <label for="active">Active</label>
+  <input type="checkbox" formControlName="active" name="active">
+
+  <button type="submit" [disabled]="!updateUserForm.valid">Update</button>
+</form>
+
+<span class="error" *ngIf="errorMessage">Error updating user!</span>
+<span class="confirmation" *ngIf="confirmationMessage">User was successfully updated.</span>
+
+<h3>Search available user by <i>User Name</i></h3>
+<input type="search" [formControl]="searchBar">
+
+<h3>Pick user to update</h3>
+
+<br />
+<select [formControl]="foundBar" (change)="injectUserToForm()" size="20">
+  <option *ngFor="let item of foundUsers" [ngValue]="item">{{item.name}} has Role: {{item.role}} and Active state is:
+    {{item.active}}</option>
+</select>

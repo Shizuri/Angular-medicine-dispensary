@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../data.service';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
-    selector: 'app-delete-user',
-    templateUrl: './delete-user.component.html',
-    styleUrls: ['./delete-user.component.css']
+    selector: 'app-update-user',
+    templateUrl: './update-user.component.html',
+    styleUrls: ['./update-user.component.css']
 })
-export class DeleteUserComponent implements OnInit {
+export class UpdateUserComponent implements OnInit {
 
     errorMessage;
     confirmationMessage;
@@ -18,8 +17,11 @@ export class DeleteUserComponent implements OnInit {
     foundBar = new FormControl(''); //for search component
     foundUsers: any[] = []; //for search component
 
-    deleteUserForm = new FormGroup({
+    updateUserForm = new FormGroup({
         name: new FormControl(''),
+        newName: new FormControl(''),
+        role: new FormControl('USER'),
+        active: new FormControl(''),
     });
 
     constructor(private data: DataService) { }
@@ -30,31 +32,28 @@ export class DeleteUserComponent implements OnInit {
     }
 
     onSubmit() {
-        this.deleteUser();
+        this.updateUser();
     }
 
-    deleteUser() {
+    updateUser(){
         this.errorMessage = false; //for fade in
         this.confirmationMessage = false; //for fade in
 
-        const options = {
-            headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-            }),
-            body: this.deleteUserForm.value.name
-          }
+        this.data.updateUser(this.updateUserForm.value)
+        .subscribe(
+            res => {
+                console.log(`Result: ${JSON.stringify(res)}`);
 
-        this.data.deleteUser(options)
-            .subscribe(
-                data => {
-                    this.confirmationMessage = true;
-                    this.errorMessage = false;
-                },
-                error => {
-                    this.confirmationMessage = false;
-                    this.errorMessage = true;
-                });
+                this.confirmationMessage = true;
+                this.errorMessage = false;
+            },
+            error => {
+                console.log(`Error: ${JSON.stringify(error.error)}`);
 
+                this.errorMessage = true;
+                this.confirmationMessage = false;
+            }
+        );
 
     }
 
@@ -83,8 +82,9 @@ export class DeleteUserComponent implements OnInit {
     }
 
     injectUserToForm() {
-        this.deleteUserForm.patchValue({
+        this.updateUserForm.patchValue({
             name: this.foundBar.value.name,
+            newName : this.foundBar.value.name,
             role: this.foundBar.value.role,
             active: this.foundBar.value.active
         });
