@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
                         // this.data.setRole(res.role);
                         localStorage.setItem('state', 'true');
                         localStorage.setItem('role', res.role);
+                        localStorage.setItem('name', res.name);
                         this.confirmationMessage = true;
                         this.errorMessage = false;
                         this.inactiveUser = false;

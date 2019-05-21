@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
 
     loggedIn; //login
     role; //login
+    name = localStorage.getItem('name');
 
     alive;
     errorMessage;

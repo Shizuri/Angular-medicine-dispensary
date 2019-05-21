@@ -7,6 +7,7 @@ import { AllUsesComponent } from './all-uses/all-uses.component';
 import { DeleteMedicineComponent } from './delete-medicine/delete-medicine.component';
 import { UndoUseComponent } from './undo-use/undo-use.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/use', pathMatch: 'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'all-uses', component: AllUsesComponent},
   { path: 'delete-medicine', component: DeleteMedicineComponent},
   { path: 'undo-use', component: UndoUseComponent},
-  { path: 'manage-users', component: ManageUsersComponent}
+  { path: 'manage-users', component: ManageUsersComponent},
+  { path: 'change-password', component: ChangePasswordComponent}
 ];
 
 @NgModule({

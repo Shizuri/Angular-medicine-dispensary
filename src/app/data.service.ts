@@ -11,35 +11,18 @@ export class DataService {
     private loggedIn = new BehaviorSubject<boolean>(false); //for login
     currentLoggedIn = this.loggedIn.asObservable(); //for login
 
-    // private role = new BehaviorSubject<string>('USER'); //for login
-    // currentRole = this.role.asObservable(); //for login
-
     receiveUrl = 'http://localhost:8080/receive';
     useUrl = 'http://localhost:8080/use';
     aliveUrl = 'http://localhost:8080/receive/alive';
     usersUrl = 'http://localhost:8080/users';
     createUserUrl = 'http://localhost:8080/users/create';
+    changePasswordUrl = 'http://localhost:8080/users/change';
 
     // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
     // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
     // aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
 
     constructor(private http: HttpClient) { }
-
-    // logIn(user) { //for login
-    //     this.http.post(this.loginUrl, user)
-    //         .subscribe(
-    //             res => {
-    //                 console.log(`Result: ${res}`);
-    //                 this.loggedIn.next(true);
-    //                 localStorage.setItem('state', 'true');
-    //             },
-    //             error => {
-    //                 console.log(`Error: ${JSON.stringify(error.error)}`);
-    //                 this.loggedIn.next(false);
-    //             }
-    //         );
-    // }
 
     logIn(user):Observable<any> { //for login
         return this.http.post(this.usersUrl, user);
@@ -49,6 +32,7 @@ export class DataService {
         this.loggedIn.next(false);
         localStorage.setItem('state', 'false');
         localStorage.setItem('role', 'USER');
+        localStorage.setItem('name', '');
     }
 
     stateOfLogin(): any { //for login
@@ -58,10 +42,6 @@ export class DataService {
         console.log(`role of user : ${role}`);
         return state;
     }
-
-    // setRole(role){
-    //     this.role.next(role.role);
-    // }
 
     on() { //for login
         this.loggedIn.next(true);
@@ -86,6 +66,10 @@ export class DataService {
 
     updateUser(user){
         return this.http.put(this.usersUrl, user);
+    }
+
+    changePassword(newPass){
+        return this.http.put(this.changePasswordUrl, newPass);
     }
 
     //medicine
