@@ -1,34 +1,55 @@
-<div>
+<div class="component">
+
+  <div class="undo-use-form">
+
     <h3>Undo medicine use</h3>
+
+    <form [formGroup]="undoForm" (ngSubmit)="onSubmit()" class="form">
+
+      <div class="input-wrapper">
+        <label for="medicineName">Medicine Name</label>
+        <input type="text" formControlName="medicineName" placeholder="medicine name" required>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="expirationDate">Expiration Date</label>
+        <input type="date" formControlName="expirationDate" required>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="patientName">Patient Name</label>
+        <input type="text" formControlName="patientName" placeholder="patient name" required>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="dateOfAdministration">Date of Administration</label>
+        <input type="date" formControlName="dateOfAdministration" required>
+      </div>
+
+      <button type="submit" [disabled]="!undoForm.valid" class="submit">Undo use</button>
+
+    </form>
+
+    <div class="error-popup">
+      <span class="error" *ngIf="errorMessage">Error: No such medicine use!</span>
+      <span class="confirmation" *ngIf="confirmationMessage">Medicine use reverted successfully.</span>
+    </div>
+
+  </div>
+  <div class="select-undo">
+
+    <h3>Search uses by <i>Medicine Name</i>, <i>Expiration Date</i>, <i>Patient Name</i> or <i>Date of
+        Administration</i>
+    </h3>
+    <input type="search" [formControl]="searchBar" class="search-field">
+
+    <h3>Pick use to undo</h3>
+
+    <select [formControl]="foundBar" (change)="injectMedicineToForm()" size="15">
+      <option *ngFor="let item of foundUses" [ngValue]="item">{{item.medicineName}} with expiration date:
+        {{item.expirationDate}} administrated to patient: {{item.patientName}} on {{item.dateOfAdministration}}</option>
+    </select>
+
   </div>
 
-  <form [formGroup]="undoForm" (ngSubmit)="onSubmit()">
-    <label for="medicineName">Medicine Name</label>
-    <input type="text" formControlName="medicineName" placeholder="medicine name" required>
-
-    <label for="expirationDate">Expiration Date</label>
-    <input type="date" formControlName="expirationDate" required>
-
-    <label for="patientName">Patient Name</label>
-    <input type="text" formControlName="patientName" placeholder="patient name" required>
-
-    <label for="dateOfAdministration">Date of Administration</label>
-    <input type="date" formControlName="dateOfAdministration" required>
-
-    <button type="submit" [disabled]="!undoForm.valid">Submit</button>
-  </form>
-
-
-<h3>Search uses by <i>Medicine Name</i>, <i>Expiration Date</i>, <i>Patient Name</i> or <i>Date of Administration</i></h3>
-<input type="search" [formControl]="searchBar">
-
-<h3>Pick use to undo</h3>
-
-<span class="error" *ngIf="errorMessage">Error: No such medicine use!</span>
-<span class="confirmation" *ngIf="confirmationMessage">Medicine use reverted successfully.</span>
-
-<br />
-<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="15">
-  <option *ngFor="let item of foundUses" [ngValue]="item">{{item.medicineName}} with expiration date:
-    {{item.expirationDate}} administrated to patient: {{item.patientName}} on {{item.dateOfAdministration}}</option>
-</select>
+</div>

@@ -1,0 +1,61 @@
+.component {
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  color: #9366CD;
+}
+
+input {
+  border: 1px solid #999999;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 16px;
+  width: 200px;
+}
+
+::placeholder {
+  color: #cccccc;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.form {
+  margin: 0 auto 40px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-wrapper label {
+  width: 150px;
+}
+
+.error-popup {
+  padding-right: 20px;
+}
+
+.submit {
+  color: #fff;
+  background-color: #9366CD;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.submit:hover {
+  color: #333;
+}
+

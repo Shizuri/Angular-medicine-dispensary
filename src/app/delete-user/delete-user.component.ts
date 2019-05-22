@@ -34,27 +34,28 @@ export class DeleteUserComponent implements OnInit {
     }
 
     deleteUser() {
-        this.errorMessage = false; //for fade in
-        this.confirmationMessage = false; //for fade in
+        if (confirm("Are you sure to delete this user?")) {
+            this.errorMessage = false; //for fade in
+            this.confirmationMessage = false; //for fade in
 
-        const options = {
-            headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-            }),
-            body: this.deleteUserForm.value.name
-          }
+            const options = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json'
+                }),
+                body: this.deleteUserForm.value.name
+            }
 
-        this.data.deleteUser(options)
-            .subscribe(
-                data => {
-                    this.confirmationMessage = true;
-                    this.errorMessage = false;
-                },
-                error => {
-                    this.confirmationMessage = false;
-                    this.errorMessage = true;
-                });
-
+            this.data.deleteUser(options)
+                .subscribe(
+                    data => {
+                        this.confirmationMessage = true;
+                        this.errorMessage = false;
+                    },
+                    error => {
+                        this.confirmationMessage = false;
+                        this.errorMessage = true;
+                    });
+        }
 
     }
 

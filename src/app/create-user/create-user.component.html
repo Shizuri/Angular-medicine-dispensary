@@ -1,24 +1,40 @@
-<h3>Create User:</h3>
+<div class="component">
 
-<form [formGroup]="createUserForm">
-  <label for="name">User Name</label>
-  <input type="text" formControlName="name" placeholder="User Name" autocomplete="username" required>
+  <h3>Create User</h3>
 
-  <label for="password">Password</label>
-  <input type="password" formControlName="password" placeholder="enter password" autocomplete="current-password"
-    required>
+  <form [formGroup]="createUserForm" class="form">
 
-  <label for="role">Role</label>
-  <select formControlName="role" required>
-    <option value="USER">USER</option>
-    <option value="ADMIN">ADMIN</option>
-  </select>
+    <div class="input-wrapper">
+      <label for="name">User Name</label>
+      <input type="text" formControlName="name" placeholder="User Name" autocomplete="username" required>
+    </div>
 
-  <label for="active">Active</label>
-  <input type="checkbox" formControlName="active" name="active" checked>
+    <div class="input-wrapper">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" placeholder="enter password" autocomplete="current-password"
+        required>
+    </div>
 
-  <button (click)="createUser()" [disabled]="!createUserForm.valid">Create User</button>
-</form>
+    <div class="input-wrapper">
+      <label for="role">Role</label>
+      <select formControlName="role" required>
+        <option value="USER">USER</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>
+    </div>
 
-<span class="error" *ngIf="errorMessage">User already exists. Please input a different name.</span>
-<span class="confirmation" *ngIf="confirmationMessage">User was successfully created.</span>
+    <div class="input-wrapper">
+      <label for="active">Active</label>
+      <input type="checkbox" formControlName="active" name="active" checked>
+    </div>
+
+    <button (click)="createUser()" [disabled]="!createUserForm.valid" class="submit">Create User</button>
+
+  </form>
+
+  <div class="error-popup">
+    <span class="error" *ngIf="errorMessage">User name already exists.</span>
+    <span class="confirmation" *ngIf="confirmationMessage">User was successfully created.</span>
+  </div>
+
+</div>

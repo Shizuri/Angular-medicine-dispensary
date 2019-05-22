@@ -1,18 +1,4 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
-#logout {
-  color: cornflowerblue;
-  cursor: pointer;
-}
-
-h1 {
-  text-align: center;
-  color: #9366CD;
-}
-
-.user-menu {
-  float: right;
-}
-
 /* Add a black background color to the top navigation */
 
 .topnav {
@@ -29,7 +15,7 @@ h1 {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 /* Add an active class to highlight the current page */
@@ -49,7 +35,7 @@ h1 {
 /* Style the dropdown button to fit inside the topnav */
 
 .dropdown .dropbtn {
-  font-size: 17px;
+  font-size: 20px;
   border: none;
   outline: none;
   color: white;
@@ -99,4 +85,18 @@ h1 {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.user-menu {
+  float: right;
+}
+
+#logout {
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+  color: #9366CD;
 }

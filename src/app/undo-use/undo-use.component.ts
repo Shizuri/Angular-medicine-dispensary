@@ -40,23 +40,25 @@ export class UndoUseComponent implements OnInit {
     }
 
     undoUse() {
-        const options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
-            body: this.undoForm.value
-        }
+        if (confirm("Are you sure to undo the use of this medicine?")) {
+            const options = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json'
+                }),
+                body: this.undoForm.value
+            }
 
-        this.data.undoUse(options)
-            .subscribe(
-                data => {
-                    this.confirmationMessage = true;
-                    this.errorMessage = false;
-                },
-                error => {
-                    this.confirmationMessage = false;
-                    this.errorMessage = true;
-                });
+            this.data.undoUse(options)
+                .subscribe(
+                    data => {
+                        this.confirmationMessage = true;
+                        this.errorMessage = false;
+                    },
+                    error => {
+                        this.confirmationMessage = false;
+                        this.errorMessage = true;
+                    });
+        }
     }
 
     getAllUses() {

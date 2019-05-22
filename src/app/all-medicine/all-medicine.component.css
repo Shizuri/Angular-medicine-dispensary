@@ -21,8 +21,7 @@
   color: #ffffff;
 }
 
-.result-table td,
-.result-table th {
+.result-table td, .result-table th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 10px 20px;
@@ -30,4 +29,17 @@
 
 .result-table tr:nth-child(odd) {
   background-color: #eeeeee;
+}
+
+input {
+  border: 1px solid #999999;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 16px;
+  width: 425px;
+  text-align: center;
+}
+
+h3{
+  color: #9366CD;
 }

@@ -1,34 +1,57 @@
-<h3>Select user to update</h3>
+<div class="component">
 
-<form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
-  <label for="name">Original User Name</label>
-  <input type="text" formControlName="name" placeholder="original user name" readonly>
+  <div class="update-user-form">
 
-  <label for="newName">New Name</label>
-  <input type="text" formControlName="newName" placeholder="new user name" required>
+    <h3>Select user to update</h3>
 
-  <label for="role">Role</label>
-  <select formControlName="role" required>
-    <option value="USER">USER</option>
-    <option value="ADMIN">ADMIN</option>
-  </select>
+    <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()" class="form">
 
-  <label for="active">Active</label>
-  <input type="checkbox" formControlName="active" name="active">
+      <div class="input-wrapper">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" placeholder="original user name" class="original-user-name">
+      </div>
 
-  <button type="submit" [disabled]="!updateUserForm.valid">Update</button>
-</form>
+      <div class="input-wrapper">
+        <label for="newName">New Name</label>
+        <input type="text" formControlName="newName" placeholder="new user name" required>
+      </div>
 
-<span class="error" *ngIf="errorMessage">Error updating user!</span>
-<span class="confirmation" *ngIf="confirmationMessage">User was successfully updated.</span>
+      <div class="input-wrapper">
+        <label for="role">Role</label>
+        <select formControlName="role" required>
+          <option value="USER">USER</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
+      </div>
 
-<h3>Search available user by <i>User Name</i></h3>
-<input type="search" [formControl]="searchBar">
+      <div class="input-wrapper">
+        <label for="active">Active</label>
+        <input type="checkbox" formControlName="active" name="active">
+      </div>
 
-<h3>Pick user to update</h3>
+      <button type="submit" [disabled]="!updateUserForm.valid" class="submit">Update user</button>
 
-<br />
-<select [formControl]="foundBar" (change)="injectUserToForm()" size="15">
-  <option *ngFor="let item of foundUsers" [ngValue]="item">{{item.name}} has Role: {{item.role}} and Active state is:
-    {{item.active}}</option>
-</select>
+    </form>
+
+    <div class="error-popup">
+      <span class="error" *ngIf="errorMessage">Error: No such user!</span>
+      <span class="confirmation" *ngIf="confirmationMessage">User was successfully updated.</span>
+    </div>
+
+  </div>
+
+  <div class="select-update-user">
+
+    <h3>Search available user by <i>User Name</i></h3>
+    <input type="search" [formControl]="searchBar" class="search-field">
+
+    <h3>Pick user to update</h3>
+
+    <select [formControl]="foundBar" (change)="injectUserToForm()" size="15">
+      <option *ngFor="let item of foundUsers" [ngValue]="item">{{item.name}} has Role: {{item.role}} and Active state
+        is: {{item.active}}</option>
+    </select>
+
+  </div>
+
+</div>

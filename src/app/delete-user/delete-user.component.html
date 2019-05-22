@@ -1,21 +1,38 @@
-<h3>Select user to delete</h3>
+<div class="component">
 
-<form [formGroup]="deleteUserForm" (ngSubmit)="onSubmit()">
-  <label for="name">User Name</label>
-  <input type="text" formControlName="name" placeholder="user name" required>
+  <div class="delete-user-form">
 
-  <button type="submit" [disabled]="!deleteUserForm.valid">Delete</button>
-</form>
+    <h3>Select user to delete</h3>
 
-<span class="error" *ngIf="errorMessage">Error deleting user!</span>
-<span class="confirmation" *ngIf="confirmationMessage">User was successfully deleted.</span>
+    <form [formGroup]="deleteUserForm" (ngSubmit)="onSubmit()" class="form">
 
-<h3>Search available user by <i>User Name</i></h3>
-<input type="search" [formControl]="searchBar">
+      <div class="input-wrapper">
+        <label for="name">User Name</label>
+        <input type="text" formControlName="name" placeholder="user name" required>
+      </div>
 
-<h3>Pick user to delete</h3>
+      <button type="submit" [disabled]="!deleteUserForm.valid" class="submit">Delete user</button>
 
-<br />
-<select [formControl]="foundBar" (change)="injectUserToForm()" size="15">
-  <option *ngFor="let item of foundUsers" [ngValue]="item">{{item.name}}</option>
-</select>
+    </form>
+
+    <div class="error-popup">
+      <span class="error" *ngIf="errorMessage">Error: No such user!</span>
+      <span class="confirmation" *ngIf="confirmationMessage">User was successfully deleted.</span>
+    </div>
+
+  </div>
+
+  <div class="select-delete-user">
+
+    <h3>Search available user by <i>User Name</i></h3>
+    <input type="search" [formControl]="searchBar" class="search-field">
+
+    <h3>Pick user to delete</h3>
+
+    <select [formControl]="foundBar" (change)="injectUserToForm()" size="15">
+      <option *ngFor="let item of foundUsers" [ngValue]="item">{{item.name}}</option>
+    </select>
+
+  </div>
+
+</div>

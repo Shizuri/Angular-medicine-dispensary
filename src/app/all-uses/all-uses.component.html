@@ -1,18 +1,22 @@
-<h3>Search uses by <i>Medicine Name</i>, <i>Expiration Date</i>, <i>Patient Name</i> or <i>Date of Administration</i>
-</h3>
-<input type="search" [formControl]="searchMed">
+<div class="component">
 
-<table class="result-table">
-  <tr>
-    <th>Medicine name</th>
-    <th>Expiration date</th>
-    <th>Patient name</th>
-    <th>Date of administration</th>
-  </tr>
-  <tr *ngFor="let use of foundUses">
-    <td>{{use.medicineName}}</td>
-    <td>{{use.expirationDate}}</td>
-    <td>{{use.patientName}}</td>
-    <td>{{use.dateOfAdministration}}</td>
-  </tr>
-</table>
+  <h3>Search uses by <i>Medicine Name</i>, <i>Expiration Date</i>, <i>Patient Name</i> or <i>Date of Administration</i>
+  </h3>
+  <input type="search" [formControl]="searchMed" class="search-field">
+
+  <table class="result-table">
+    <tr>
+      <th>Medicine name</th>
+      <th>Expiration date</th>
+      <th>Patient name</th>
+      <th>Date of administration</th>
+    </tr>
+    <tr *ngFor="let use of foundUses">
+      <td>{{use.medicineName}}</td>
+      <td>{{use.expirationDate}}</td>
+      <td>{{use.patientName}}</td>
+      <td>{{use.dateOfAdministration}}</td>
+    </tr>
+  </table>
+
+</div>

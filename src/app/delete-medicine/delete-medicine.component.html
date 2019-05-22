@@ -1,31 +1,49 @@
-<div>
-  <h3>Delete medicine</h3>
+<div class="component">
+
+  <div class="delete-medicine">
+
+    <h3>Delete medicine</h3>
+
+    <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()" class="form">
+
+      <div class="input-wrapper">
+        <label for="medicineName">Medicine Name</label>
+        <input type="text" formControlName="medicineName" placeholder="medicine name" required>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="expirationDate">Expiration Date</label>
+        <input type="date" formControlName="expirationDate" required>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="quantity">Quantity</label>
+        <input type="number" formControlName="quantity" placeholder="0 or empty = ALL">
+      </div>
+
+      <button type="submit" [disabled]="!deleteForm.valid" class="submit">Delete medicine</button>
+
+    </form>
+
+    <div class="error-popup">
+      <span class="error" *ngIf="errorMessage">Error: No such medicine!</span>
+      <span class="confirmation" *ngIf="confirmationMessage">Medicine was successfully deleted.</span>
+    </div>
+
+  </div>
+
+  <div class="select-medicine">
+
+    <h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
+    <input type="search" [formControl]="searchBar" class="search-field">
+
+    <h3>Pick medicine to delete</h3>
+
+    <select [formControl]="foundBar" (change)="injectMedicineToForm()" size="15">
+      <option *ngFor="let item of foundMeds" [ngValue]="item">{{item.medicineName}} with expiration date:
+        {{item.expirationDate}}</option>
+    </select>
+
+  </div>
+
 </div>
-
-<form [formGroup]="deleteForm" (ngSubmit)="onSubmit()">
-  <label for="medicineName">Medicine Name</label>
-  <input type="text" formControlName="medicineName" placeholder="medicine name" required>
-
-  <label for="expirationDate">Expiration Date</label>
-  <input type="date" formControlName="expirationDate" required>
-
-  <label for="quantity">Quantity</label>
-  <input type="number" formControlName="quantity" placeholder="0 or empty = ALL">
-
-  <button type="submit" [disabled]="!deleteForm.valid">Submit</button>
-</form>
-
-
-<h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
-<input type="search" [formControl]="searchBar">
-
-<h3>Pick medicine to delete</h3>
-
-<span class="error" *ngIf="errorMessage">Error: No such medicine!</span>
-<span class="confirmation" *ngIf="confirmationMessage">Medicine was successfully deleted.</span>
-
-<br />
-<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="15">
-  <option *ngFor="let item of foundMeds" [ngValue]="item">{{item.medicineName}} with expiration date:
-    {{item.expirationDate}}</option>
-</select>

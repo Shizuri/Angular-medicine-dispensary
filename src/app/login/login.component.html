@@ -1,23 +1,28 @@
-<div><h3>Log in</h3></div>
+<div class="component">
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <label for="name">User Name</label>
-  <input type="text" formControlName="name" placeholder="User Name" autocomplete="username" required>
+  <h1>Welcome to the Medicine Dispensary</h1>
 
-  <label for="password">Password</label>
-  <input type="password" formControlName="password" placeholder="enter password" autocomplete="current-password" required>
+  <h3>Please log in</h3>
 
-  <button type="submit" [disabled]="!loginForm.valid" routerLink="/all-medicine">Submit</button>
-</form>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
 
-<p class="error" *ngIf="errorMessage">
-    Invalid user name or password.
-</p>
+    <div class="input-wrapper">
+      <label for="name">User Name</label>
+      <input type="text" formControlName="name" placeholder="User Name" autocomplete="username" required>
+    </div>
 
-<p class="confirmation" *ngIf="confirmationMessage">
-  Medicine received successfully.
-</p>
+    <div class="input-wrapper">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" placeholder="Password" autocomplete="current-password" required>
+    </div>
 
-<p class="error" *ngIf="inactiveUser">
-    This user is not active. Please check with your administratior.
-</p>
+    <button type="submit" [disabled]="!loginForm.valid" routerLink="/all-medicine" class="submit">Log in</button>
+  </form>
+
+  <div class="error-popup">
+    <span class="error" *ngIf="errorMessage">Invalid user name or password.</span>
+    <span class="confirmation" *ngIf="confirmationMessage">Login successful.</span>
+    <span class="error" *ngIf="inactiveUser">This user is not active.</span>
+  </div>
+
+</div>

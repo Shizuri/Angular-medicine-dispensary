@@ -39,23 +39,25 @@ export class DeleteMedicineComponent implements OnInit {
     }
 
     deleteMedicine() {
-        const options = {
-            headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-            }),
-            body: this.deleteForm.value
-          }
+        if (confirm("Are you sure to delete this medicine?")) {
+            const options = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json'
+                }),
+                body: this.deleteForm.value
+            }
 
-        this.data.deleteMedicine(options)
-            .subscribe(
-                data => {
-                    this.confirmationMessage = true;
-                    this.errorMessage = false;
-                },
-                error => {
-                    this.confirmationMessage = false;
-                    this.errorMessage = true;
-                });
+            this.data.deleteMedicine(options)
+                .subscribe(
+                    data => {
+                        this.confirmationMessage = true;
+                        this.errorMessage = false;
+                    },
+                    error => {
+                        this.confirmationMessage = false;
+                        this.errorMessage = true;
+                    });
+        }
     }
 
     getAllMedicines() {

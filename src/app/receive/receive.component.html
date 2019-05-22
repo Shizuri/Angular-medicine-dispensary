@@ -1,22 +1,31 @@
-<div><h3>Input new medicine</h3></div>
+<div class="component">
 
-<form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
-  <label for="medicineName">Medicine Name</label>
-  <input type="text" formControlName="medicineName" placeholder="medicine name" required>
+  <h3>Input new medicine</h3>
 
-  <label for="quantity">Quantity</label>
-  <input type="number" formControlName="quantity" min="0" placeholder="quantity as a number" required>
+  <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()" class="form">
 
-  <label for="expirationDate">Expiration Date</label>
-  <input type="date" formControlName="expirationDate" min={{today}} required>
+    <div class="input-wrapper">
+      <label for="medicineName">Medicine Name</label>
+      <input type="text" formControlName="medicineName" placeholder="medicine name" required>
+    </div>
 
-  <button type="submit" [disabled]="!medicineForm.valid">Submit</button>
-</form>
+    <div class="input-wrapper">
+      <label for="quantity">Quantity</label>
+      <input type="number" formControlName="quantity" min="0" placeholder="quantity as a number" required>
+    </div>
 
-<p class="error" *ngIf="errorMessage">
-  Error adding this medicine.
-</p>
+    <div class="input-wrapper">
+      <label for="expirationDate">Expiration Date</label>
+      <input type="date" formControlName="expirationDate" min={{today}} required>
+    </div>
 
-<p class="confirmation" *ngIf="confirmationMessage">
-  Medicine received successfully.
-</p>
+    <button type="submit" [disabled]="!medicineForm.valid" class="submit">Receive medicine</button>
+
+  </form>
+
+  <div class="error-popup">
+    <span class="error" *ngIf="errorMessage">Error adding this medicine.</span>
+    <span class="confirmation" *ngIf="confirmationMessage">Medicine received successfully.</span>
+  </div>
+
+</div>
