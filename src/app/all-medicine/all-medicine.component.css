@@ -1,0 +1,33 @@
+.component {
+  margin: auto;
+  text-align: center;
+}
+
+.search-field {
+  margin: 0 auto 40px;
+}
+
+.result-table {
+  margin: auto;
+}
+
+.result-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.result-table th {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.result-table td,
+.result-table th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.result-table tr:nth-child(odd) {
+  background-color: #eeeeee;
+}

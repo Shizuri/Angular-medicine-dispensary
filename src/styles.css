@@ -33,3 +33,26 @@
   transition: color 0.3s, background-color 0.3s;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+input,
+select {
+    border: 1px solid #999999;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 16px;
+    /* font-family: "Source Sans Pro"; */
+    width: auto;
+}
+
+select[multiple="multiple"] {
+    width: 300px;
+}
+
+input[type='checkbox'] {
+    width: auto;
+}
+
+input[type='submit']:hover {
+    background-color: #438FCC;
+    color: #ffffff;
+}

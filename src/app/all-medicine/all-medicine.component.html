@@ -1,15 +1,19 @@
-<h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
-<input type="search" [formControl]="searchMed">
+<div class="component">
 
-<table>
-  <tr>
-    <th>Medicine name</th>
-    <th>Quantity</th>
-    <th>Expiration date</th>
-  </tr>
-  <tr *ngFor="let med of foundMeds">
-    <td>{{med.medicineName}}</td>
-    <td>{{med.quantity}}</td>
-    <td>{{med.expirationDate}}</td>
-  </tr>
-</table>
+  <h3>Search available medicines by <i>Medicine Name</i> or <i>Expiration Date</i></h3>
+  <input type="search" [formControl]="searchMed" class="search-field">
+
+  <table class="result-table">
+    <tr>
+      <th>Medicine name</th>
+      <th>Quantity</th>
+      <th>Expiration date</th>
+    </tr>
+    <tr *ngFor="let med of foundMeds">
+      <td>{{med.medicineName}}</td>
+      <td>{{med.quantity}}</td>
+      <td>{{med.expirationDate}}</td>
+    </tr>
+  </table>
+
+</div>
