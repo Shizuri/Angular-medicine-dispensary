@@ -16,6 +16,6 @@
 <h3>Pick user to delete</h3>
 
 <br />
-<select [formControl]="foundBar" (change)="injectUserToForm()" size="20">
+<select [formControl]="foundBar" (change)="injectUserToForm()" size="15">
   <option *ngFor="let item of foundUsers" [ngValue]="item">{{item.name}}</option>
 </select>

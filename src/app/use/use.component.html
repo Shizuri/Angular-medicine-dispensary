@@ -28,7 +28,7 @@
 <span class="confirmation" *ngIf="confirmationMessage">Medicine used successfully.</span>
 
 <br />
-<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="20">
+<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="15">
   <option *ngFor="let item of foundMeds" [ngValue]="item">{{item.medicineName}} with expiration date:
     {{item.expirationDate}}</option>
 </select>

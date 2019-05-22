@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { DeleteMedicineComponent } from './delete-medicine/delete-medicine.component';
 import { UndoUseComponent } from './undo-use/undo-use.component';
 import { LoginComponent } from './login/login.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
@@ -32,7 +31,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     DeleteMedicineComponent,
     UndoUseComponent,
     LoginComponent,
-    ManageUsersComponent,
     CreateUserComponent,
     DeleteUserComponent,
     UpdateUserComponent,

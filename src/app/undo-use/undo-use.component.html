@@ -28,7 +28,7 @@
 <span class="confirmation" *ngIf="confirmationMessage">Medicine use reverted successfully.</span>
 
 <br />
-<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="20">
+<select [formControl]="foundBar" (change)="injectMedicineToForm()" size="15">
   <option *ngFor="let item of foundUses" [ngValue]="item">{{item.medicineName}} with expiration date:
     {{item.expirationDate}} administrated to patient: {{item.patientName}} on {{item.dateOfAdministration}}</option>
 </select>

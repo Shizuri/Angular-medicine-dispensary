@@ -5,28 +5,37 @@
   </div>
 
   <div *ngIf="loggedIn">
-    <h1>{{name}} using Medicine Dispensary</h1>
+    <h1>Medicine Dispensary</h1>
     <div class="topnav">
       <nav>
-        <a routerLink="/all-medicine">All Medicine</a>
-        <a routerLink="/all-uses">All Uses</a>
-        <a routerLink="/use">Use Medicine</a>
-        <a routerLink="/receive">Receive Medicine</a>
-        <a routerLink="/delete-medicine">Delete Medicine</a>
-        <a routerLink="/undo-use">Undo Use</a>
-        |
-        <span *ngIf="role == 'ADMIN'">ADMIN<a routerLink="/manage-users">Manage users</a></span>
-        <span *ngIf="role == 'USER'">USER</span>
-        |
-        <a routerLink="/change-password">Change password</a>
-        <button (click)="logOut()">Log out</button>
+
+        <a routerLink="/all-medicine" routerLinkActive="active">All Medicine</a>
+        <a routerLink="/all-uses" routerLinkActive="active">All Uses</a>
+        <a routerLink="/use" routerLinkActive="active">Use Medicine</a>
+        <a routerLink="/receive" routerLinkActive="active">Receive Medicine</a>
+        <a routerLink="/delete-medicine" routerLinkActive="active">Delete Medicine</a>
+        <a routerLink="/undo-use" routerLinkActive="active">Undo Use</a>
+
+        <div class="dropdown">
+            <button class="dropbtn" *ngIf="role == 'ADMIN'" routerLinkActive="active">Manage users
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a routerLink="/create-user" routerLinkActive="active">Create User</a>
+                <a routerLink="/update-user" routerLinkActive="active">Update User</a>
+                <a routerLink="/delete-user" routerLinkActive="active">Delete User</a>
+            </div>
+        </div>
+
+        <a routerLink="/change-password" routerLinkActive="active">Change password</a>
+
+        <a id="logout" (click)="logOut()">Log out {{name}}</a>
+
       </nav>
     </div>
-    <hr>
 
     <router-outlet></router-outlet>
   </div>
-
 
 </div>
 
