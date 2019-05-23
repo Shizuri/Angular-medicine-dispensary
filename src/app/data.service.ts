@@ -18,6 +18,7 @@ export class DataService {
     createUserUrl = 'http://localhost:8080/users/create';
     changePasswordUrl = 'http://localhost:8080/users/change';
 
+    // URLs for Heroku deploy
     // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
     // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
     // aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
@@ -33,14 +34,6 @@ export class DataService {
         localStorage.setItem('state', 'false');
         localStorage.setItem('role', 'USER');
         localStorage.setItem('name', '');
-    }
-
-    stateOfLogin(): any { //for login
-        let state = localStorage.getItem('state');
-        let role = localStorage.getItem('role');
-        console.log(`state of login: ${state}`);
-        console.log(`role of user : ${role}`);
-        return state;
     }
 
     on() { //for login
@@ -64,7 +57,7 @@ export class DataService {
         return this.http.delete(this.usersUrl, options);
     }
 
-    updateUser(user){
+    updateUser(user): Observable<any>{
         return this.http.put(this.usersUrl, user);
     }
 

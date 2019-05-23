@@ -46,14 +46,14 @@ export class ChangePasswordComponent implements OnInit {
             this.data.changePassword(form)
             .subscribe(
                 res => {
-                    console.log(`Result: ${JSON.stringify(res)}`);
+                    // console.log(`Result: ${JSON.stringify(res)}`);
 
                     this.confirmationMessage = true;
                     this.errorMessage = false;
                     this.doNotMatch = false;
                 },
                 error => {
-                    console.log(`Error: ${JSON.stringify(error.error)}`);
+                    // console.log(`Error: ${JSON.stringify(error.error)}`);
                     this.error = JSON.stringify(error.error);
 
                     this.errorMessage = true;

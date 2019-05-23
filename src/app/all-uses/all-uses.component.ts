@@ -28,7 +28,7 @@ export class AllUsesComponent implements OnInit {
                     this.foundUses = use;
                 },
                 error => {
-                    console.log(`Error. Backend might be down`);
+                    // console.log(`Error. Backend might be down`);
                 });
     }
 

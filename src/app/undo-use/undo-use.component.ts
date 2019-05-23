@@ -69,7 +69,7 @@ export class UndoUseComponent implements OnInit {
                     this.foundUses = uses; // fill filter data for search on load
                 },
                 error => {
-                    console.log(`Error: ${JSON.stringify(error)}`);
+                    // console.log(`Error: ${JSON.stringify(error)}`);
                 }
             )
     }

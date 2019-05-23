@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { DataService } from '../data.service';
-// import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -11,7 +10,7 @@ import { DataService } from '../data.service';
 })
 export class LoginComponent implements OnInit {
 
-    loggedIn; //login
+    loggedIn; // for login
 
     errorMessage;
     confirmationMessage;
@@ -35,36 +34,36 @@ export class LoginComponent implements OnInit {
         this.logIn();
     }
 
-    // logIn(){
-    //     this.data.logIn(this.loginForm.value);
-    // }
-
     logIn() {
         this.data.logIn(this.loginForm.value)
             .subscribe(
                 res => {
-                    console.log(`Result: ${JSON.stringify(res)}`);
+                    // console.log(`Result: ${JSON.stringify(res)}`);
                     if (res.active == true) {
                         this.data.on();
-                        // this.data.setRole(res.role);
+
                         localStorage.setItem('state', 'true');
                         localStorage.setItem('role', res.role);
                         localStorage.setItem('name', res.name);
+
                         this.confirmationMessage = true;
                         this.errorMessage = false;
                         this.inactiveUser = false;
-                        // this.router.navigate
-                        window.location.reload(); // might not be the best solution
+
+                        window.location.reload(); // needed to update values before displaying the main page
                     }
 
                     if(res.active == false){
                         this.inactiveUser = true;
+                        this.errorMessage = false;
+                        this.confirmationMessage = false;
                     }
 
                 },
                 error => {
-                    console.log(`Error: ${JSON.stringify(error.error)}`);
+                    // console.log(`Error: ${JSON.stringify(error.error)}`);
                     this.data.off();
+
                     this.errorMessage = true;
                     this.confirmationMessage = false;
                     this.inactiveUser = false;

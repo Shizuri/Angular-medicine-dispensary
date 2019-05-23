@@ -32,14 +32,12 @@ export class CreateUserComponent implements OnInit {
         this.data.createUser(this.createUserForm.value)
             .subscribe(
                 res => {
-                    console.log(`Result: ${JSON.stringify(res)}`);
-
+                    // console.log(`Result: ${JSON.stringify(res)}`);
                     this.confirmationMessage = true;
                     this.errorMessage = false;
                 },
                 error => {
-                    console.log(`Error: ${JSON.stringify(error.error)}`);
-
+                    // console.log(`Error: ${JSON.stringify(error.error)}`);
                     this.errorMessage = true;
                     this.confirmationMessage = false;
                 }

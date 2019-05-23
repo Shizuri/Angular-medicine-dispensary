@@ -8,9 +8,9 @@ import { DataService } from './data.service';
 })
 export class AppComponent implements OnInit {
 
-    loggedIn; //login
-    role; //login
-    name = localStorage.getItem('name');
+    loggedIn; //for login
+    role; //for user
+    name; //for user
 
     alive;
     errorMessage;
@@ -18,17 +18,18 @@ export class AppComponent implements OnInit {
     constructor(private data: DataService) { }
 
     ngOnInit() {
-        this.isAlive();
+        this.isAlive(); // check if backend is alive
 
-        this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //login
-        if(this.data.stateOfLogin() == 'true'){
+        this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //for login
+
+        //so that you don't "log out" on refre
+        if(localStorage.getItem('state') == 'true'){
             this.data.on();
         } else {
             this.data.off();
         }
-        // this.data.currentRole.subscribe(res => this.role = res); //login
 
-        this.getRole();
+        this.getRoleAndName();
     }
 
     isAlive() {
@@ -45,7 +46,8 @@ export class AppComponent implements OnInit {
         this.data.logOut();
     }
 
-    getRole(){
+    getRoleAndName(){
         this.role = localStorage.getItem('role');
+        this.name = localStorage.getItem('name');
     }
 }

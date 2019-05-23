@@ -20,7 +20,8 @@ export class AllMedicineComponent implements OnInit {
     ngOnInit() {
         this.getAllMedicine();
         this.listByMedicine();
-        this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //login
+        this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //logi
+
     }
 
     getAllMedicine() {
@@ -31,7 +32,7 @@ export class AllMedicineComponent implements OnInit {
                     this.foundMeds = med;
                 },
                 error => {
-                    console.log(`Error. Backend might be down`);
+                    // console.log(`Error. Backend might be down`);
                 });
     }
 
