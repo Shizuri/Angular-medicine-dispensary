@@ -61,11 +61,13 @@ input {
 
 .about {
   text-align: center;
-  float: right;
+  margin: auto;
+  width: 50%;
   border: 3px solid #9366CD;
   border-radius: 5px;
   border-collapse: separate;
   padding-left: 15px;
   padding-right: 15px;
+  font-size: 18px;
 }
 
