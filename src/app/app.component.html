@@ -17,21 +17,21 @@
         <a routerLink="/undo-use" routerLinkActive="active">Undo Use</a>
 
         <span class="user-menu">
-        <div class="dropdown">
+          <div class="dropdown">
             <button class="dropbtn" *ngIf="role == 'ADMIN'" routerLinkActive="active">Manage users
-                <i class="fa fa-caret-down"></i>
+              <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a routerLink="/create-user" routerLinkActive="active">Create User</a>
-                <a routerLink="/update-user" routerLinkActive="active">Update User</a>
-                <a routerLink="/delete-user" routerLinkActive="active">Delete User</a>
+              <a routerLink="/create-user" routerLinkActive="active">Create User</a>
+              <a routerLink="/update-user" routerLinkActive="active">Update User</a>
+              <a routerLink="/delete-user" routerLinkActive="active">Delete User</a>
             </div>
-        </div>
+          </div>
 
-        <a id="change-password" routerLink="/change-password" routerLinkActive="active">Change password</a>
+          <a id="change-password" routerLink="/change-password" routerLinkActive="active">Change password</a>
 
-        <a id="logout" (click)="logOut()">Log out {{name}}</a>
-      </span>
+          <a id="logout" (click)="logOut()">Log out {{name}}</a>
+        </span>
 
       </nav>
     </div>
