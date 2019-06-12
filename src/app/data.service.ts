@@ -11,20 +11,20 @@ export class DataService {
     private loggedIn = new BehaviorSubject<boolean>(false); //for login
     currentLoggedIn = this.loggedIn.asObservable(); //for login
 
-    // receiveUrl = 'http://localhost:8080/receive';
-    // useUrl = 'http://localhost:8080/use';
-    // aliveUrl = 'http://localhost:8080/receive/alive';
-    // usersUrl = 'http://localhost:8080/users';
-    // createUserUrl = 'http://localhost:8080/users/create';
-    // changePasswordUrl = 'http://localhost:8080/users/change';
+    receiveUrl = 'http://localhost:8080/receive';
+    useUrl = 'http://localhost:8080/use';
+    aliveUrl = 'http://localhost:8080/receive/alive';
+    usersUrl = 'http://localhost:8080/users';
+    createUserUrl = 'http://localhost:8080/users/create';
+    changePasswordUrl = 'http://localhost:8080/users/change';
 
     // URLs for Heroku deploy
-    receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
-    useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
-    aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
-    usersUrl = 'https://spring-medicine-dispensary.herokuapp.com/users';
-    createUserUrl = 'https://spring-medicine-dispensary.herokuapp.com/users/create';
-    changePasswordUrl = 'https://spring-medicine-dispensary.herokuapp.com/users/change';
+    // receiveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive';
+    // useUrl = 'https://spring-medicine-dispensary.herokuapp.com/use';
+    // aliveUrl = 'https://spring-medicine-dispensary.herokuapp.com/receive/alive';
+    // usersUrl = 'https://spring-medicine-dispensary.herokuapp.com/users';
+    // createUserUrl = 'https://spring-medicine-dispensary.herokuapp.com/users/create';
+    // changePasswordUrl = 'https://spring-medicine-dispensary.herokuapp.com/users/change';
 
     constructor(private http: HttpClient) { }
 
