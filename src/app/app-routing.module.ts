@@ -12,7 +12,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/use', pathMatch: 'full'},
+  { path: '', redirectTo: '/receive', pathMatch: 'full'},
   { path: 'use', component: UseComponent},
   { path: 'receive', component: ReceiveComponent},
   { path: 'all-medicine', component: AllMedicineComponent},
