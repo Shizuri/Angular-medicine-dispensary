@@ -5,7 +5,14 @@
   </div>
 
   <div *ngIf="loggedIn">
-    <h1>Medicine Dispensary</h1>
+
+    <div class="h1-container">
+      <h1>Medicine Dispensary</h1>
+    </div>
+    <div class="about-container">
+      <span (click)="on()" class="about">About MD</span>
+    </div>
+
     <div class="topnav">
       <nav>
 
@@ -46,4 +53,15 @@
 </div>
 <div *ngIf="!alive && errorMessage">
   Error connecting to server.
+</div>
+
+<!-- overlay -->
+
+<div id="overlay" (click)="off()">
+  <div id="text">
+    <h3>About Medicine Dispensary</h3>
+    <p>This app is created by Zdravko Mavkov for demonstration purposes.</p>
+    <p>Use username: "user" and password: "pass" to explore the app.</p>
+    <p>Technologies used: HTML 5, CSS 3, Angular 7 with TypeScript, Spring Boot 2 with Java and PostgreSQL</p>
+  </div>
 </div>

@@ -69,5 +69,6 @@ input {
   padding-left: 15px;
   padding-right: 15px;
   font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 

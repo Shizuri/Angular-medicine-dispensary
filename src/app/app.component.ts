@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
         this.data.currentLoggedIn.subscribe(res => this.loggedIn = res); //for login
 
         //so that you don't "log out" on refre
-        if(localStorage.getItem('state') == 'true'){
+        if (localStorage.getItem('state') == 'true') {
             this.data.on();
         } else {
             this.data.off();
@@ -42,12 +42,22 @@ export class AppComponent implements OnInit {
             });
     }
 
-    logOut(){
+    logOut() {
         this.data.logOut();
     }
 
-    getRoleAndName(){
+    getRoleAndName() {
         this.role = localStorage.getItem('role');
         this.name = localStorage.getItem('name');
+    }
+
+    // overlay
+
+    on() {
+        document.getElementById("overlay").style.display = "block";
+    }
+
+    off() {
+        document.getElementById("overlay").style.display = "none";
     }
 }
